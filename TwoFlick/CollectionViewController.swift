@@ -20,13 +20,6 @@ class CollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         getFotos.collectionViewCtrl = self
-        
-//        flickList.append(FlickItem(title: "Conkie", image: "conkie"))
-//        flickList.append(FlickItem(title: "Fritters", image: "fritters"))
-//        flickList.append(FlickItem(title: "Pizza", image: "pizza"))
-//        flickList.append(FlickItem(title: "Quiche", image: "quiche"))
-//        flickList.append(FlickItem(title: "Roti", image: "roti"))
-//        flickList.append(FlickItem(title: "Sandwich", image: "sandwich"))
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -80,6 +73,7 @@ class CollectionViewController: UICollectionViewController {
         // get a handle on the next item to be shown
         let item = getFotos.images[indexPath.row]
         cell.flickImage.image = item.image
+        
     
         return cell
     }

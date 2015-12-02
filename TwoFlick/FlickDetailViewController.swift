@@ -18,6 +18,10 @@ class FlickDetailViewController: UIViewController {
         self.navigationItem.title = item.title
         self.flickLabel.text = item.title
         flickImageVw.image = item.image
+        
+        // add rounding to the image's corners
+        /*flickImageVw.layer.cornerRadius = 20
+        flickImageVw.clipsToBounds = true*/
     }
 
     
