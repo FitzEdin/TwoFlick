@@ -16,7 +16,7 @@ class FlickCell: UICollectionViewCell {
     override func awakeFromNib() {
         flickImage.layer.cornerRadius = 5
         flickImage.clipsToBounds = true
-        
+     
         layer.shadowColor = UIColor.blackColor().CGColor
         layer.shadowOffset = CGSizeMake(0, 2)
         layer.shadowRadius = 2

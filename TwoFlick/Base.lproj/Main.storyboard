@@ -16,15 +16,15 @@
                         <animations/>
                         <color key="backgroundColor" red="0.041505635278923786" green="0.79789367953072587" blue="0.9824426529255319" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.99194461107254028" green="0.99615627527236938" blue="0.99600595235824585" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="WMV-oj-UXo">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="WMV-oj-UXo">
                             <size key="itemSize" width="150" height="100"/>
-                            <size key="headerReferenceSize" width="20" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="2" minY="5" maxX="2" maxY="5"/>
+                            <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="Cell" id="nUa-0P-wEI" customClass="FlickCell" customModule="TwoFlick" customModuleProvider="target">
-                                <rect key="frame" x="2" y="119" width="165" height="100"/>
+                                <rect key="frame" x="5" y="69" width="165" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="165" height="100"/>
@@ -52,24 +52,14 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="JZ7-zC-WMs">
-                            <rect key="frame" x="0.0" y="64" width="600" height="50"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                            <subviews>
-                                <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Psh-Zt-3sJ">
-                                    <rect key="frame" x="8" y="3" width="584" height="44"/>
-                                    <animations/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </searchBar>
-                            </subviews>
-                            <animations/>
-                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="bSQ-xF-Nz5" id="V7O-j5-mbd"/>
                             <outlet property="delegate" destination="bSQ-xF-Nz5" id="Jvq-st-pdL"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="2Flick" id="wT8-oU-m34"/>
+                    <navigationItem key="navigationItem" title="2Flick" id="wT8-oU-m34">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="g8x-86-c5s"/>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="awe-9D-dBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -103,20 +93,13 @@
                         <color key="backgroundColor" red="0.093190631534586371" green="0.57849294066533052" blue="0.84540963172912598" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="bbr-JS-peM" firstAttribute="centerY" secondItem="exy-jP-PgS" secondAttribute="centerY" id="3Tp-a8-hjS"/>
-                            <constraint firstItem="hok-A1-tu5" firstAttribute="centerX" secondItem="exy-jP-PgS" secondAttribute="centerX" id="3dv-gq-LqE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bbr-JS-peM" secondAttribute="trailing" constant="-20" id="6UL-oF-KFr"/>
                             <constraint firstItem="bbr-JS-peM" firstAttribute="top" secondItem="zuD-f4-RNW" secondAttribute="bottom" constant="8" id="CUr-vi-3ZW"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="hok-A1-tu5" secondAttribute="trailing" constant="20" id="DoF-N9-tqG"/>
-                            <constraint firstItem="hok-A1-tu5" firstAttribute="leading" secondItem="bbr-JS-peM" secondAttribute="leading" id="Z42-yR-sRz"/>
+                            <constraint firstItem="hok-A1-tu5" firstAttribute="top" secondItem="bbr-JS-peM" secondAttribute="bottom" constant="8" id="LPh-0f-gat"/>
+                            <constraint firstItem="hok-A1-tu5" firstAttribute="centerX" secondItem="bbr-JS-peM" secondAttribute="centerX" id="fbB-0b-Mpi"/>
                             <constraint firstItem="bbr-JS-peM" firstAttribute="leading" secondItem="exy-jP-PgS" secondAttribute="leadingMargin" constant="-20" id="u5L-dD-azw"/>
-                            <constraint firstItem="hok-A1-tu5" firstAttribute="leading" secondItem="exy-jP-PgS" secondAttribute="leadingMargin" constant="20" id="uEc-G2-UE8"/>
-                            <constraint firstItem="hok-A1-tu5" firstAttribute="top" secondItem="bbr-JS-peM" secondAttribute="bottom" constant="8" id="uYO-is-8Xg"/>
+                            <constraint firstItem="hok-A1-tu5" firstAttribute="leading" secondItem="exy-jP-PgS" secondAttribute="leadingMargin" constant="20" id="zu4-7T-Vc0"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Z42-yR-sRz"/>
-                            </mask>
-                        </variation>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
