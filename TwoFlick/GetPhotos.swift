@@ -78,7 +78,7 @@ class GetPhotos{
     
     init(){
         let apiKey = "018c00fa2d9b15eea951e9a9efa8137d"
-        let url = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=\(apiKey)&per_page=500&format=json&nojsoncallback=1")!
+        let url = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=\(apiKey)&per_page=100&format=json&nojsoncallback=1")!
     
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(

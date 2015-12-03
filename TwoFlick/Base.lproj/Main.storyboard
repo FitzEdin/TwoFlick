@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--2Flick-->
+        <!--Collection View Controller-->
         <scene sceneID="tnJ-zD-P99">
             <objects>
                 <collectionViewController id="bSQ-xF-Nz5" customClass="CollectionViewController" customModule="TwoFlick" customModuleProvider="target" sceneMemberID="viewController">
@@ -57,8 +57,18 @@
                             <outlet property="delegate" destination="bSQ-xF-Nz5" id="Jvq-st-pdL"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="2Flick" id="wT8-oU-m34">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="g8x-86-c5s"/>
+                    <navigationItem key="navigationItem" id="wT8-oU-m34">
+                        <nil key="title"/>
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="center" minimumFontSize="17" id="MN3-YQ-ZJ4">
+                            <rect key="frame" x="195" y="7" width="210" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="bSQ-xF-Nz5" id="TSZ-y9-PBQ"/>
+                            </connections>
+                        </textField>
                     </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="awe-9D-dBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
