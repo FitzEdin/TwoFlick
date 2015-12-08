@@ -12,6 +12,7 @@ class FlickDetailViewController: UIViewController {
     var item : FlickItem!
     @IBOutlet weak var flickImageVw: UIImageView!
     @IBOutlet weak var flickLabel: UILabel!
+    @IBOutlet weak var flickLabel2: UILabel!
     var lgImg : UIImage!
     var url : String!
     let size = "z.jpg"
