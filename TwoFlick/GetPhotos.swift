@@ -12,15 +12,16 @@ class GetPhotos{
     
     var images = [FlickItem]()
     var collectionViewCtrl: CollectionViewController?
+    let apiKey = "018c00fa2d9b15eea951e9a9efa8137d"
     
-    func gotImage(data: NSData?, title: String, baseURL: String, farm: Int, server: String , secret: String, id: String, owner: String){
+    func gotImage(data: NSData?, title: String, baseURL: String, farm: Int, server: String , secret: String, id: String, owner: String, ownerName: String, views: Int){
         guard data != nil else {
             print("no data")
             return
         }
         
         let image = UIImage(data: data!)
-        let item = FlickItem(title: title, smImg: image!, baseURL: baseURL, farm: farm, server: server , secret: secret, id: id, owner: owner)
+        let item = FlickItem(title: title, smImg: image!, baseURL: baseURL, farm: farm, server: server , secret: secret, id: id, owner: owner, ownerName: ownerName, views: views)
         
         images.append(item)
         
@@ -55,6 +56,9 @@ class GetPhotos{
                 let id = first["id"]! as! String
                 let title = first["title"]! as! String
                 let owner = first["owner"]! as! String
+                let ownerName = first["ownername"]! as! String
+                //let views = first["views"]! as! Int
+                let views = 0
                 print(title)
                 
                 // form URL with appropriate parameters
@@ -68,7 +72,7 @@ class GetPhotos{
                     completionHandler: {
                         data,
                         response,
-                        error in self.gotImage(data, title: title, baseURL: baseURL, farm: farm, server: server, secret: secret, id: id, owner: owner)
+                        error in self.gotImage(data, title: title, baseURL: baseURL, farm: farm, server: server, secret: secret, id: id, owner: owner, ownerName: ownerName, views: views)
                     }
                 )
                 task.resume()
@@ -78,10 +82,15 @@ class GetPhotos{
         }
     }
     
-    init(){
-        let apiKey = "018c00fa2d9b15eea951e9a9efa8137d"
-        let url = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=\(apiKey)&per_page=100&format=json&nojsoncallback=1")!
+    init(mode: String){
+        if(mode == "get"){
+            get()
+        }
+    }
     
+    func get(){
+        let url = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=\(apiKey)&extras=owner_name%2C+views&format=json&nojsoncallback=1")!
+        
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(
             url,
@@ -91,7 +100,7 @@ class GetPhotos{
                 error in self.handleData(data!)
             }
         )
-    
+        
         task.resume()
     }
 }

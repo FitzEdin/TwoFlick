@@ -77,38 +77,6 @@ class CollectionViewController: UICollectionViewController {
     
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-    
-    }
-    */
-
 }
 
 
@@ -120,7 +88,7 @@ extension CollectionViewController : UITextFieldDelegate {
         textField.addSubview(activityIndicator)
         activityIndicator.frame = textField.bounds
         activityIndicator.startAnimating()
-  /*      flickr.searchFlickrForTerm(textField.text!) {
+        flickr.searchFlickrForTerm(textField.text!) {
             results, error in
             
             //2
@@ -132,13 +100,12 @@ extension CollectionViewController : UITextFieldDelegate {
             if results != nil {
                 //3
                 print("Found \(results!.searchResults.count) matching \(results!.searchTerm)")
-                self.searches.insert(results!, atIndex: 0)
+                self.searchResults.insert(results!, atIndex: 0)
                 
                 //4
                 self.collectionView?.reloadData()
             }
         }
-*/
         
         textField.text = nil
         textField.resignFirstResponder()
