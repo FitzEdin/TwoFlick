@@ -13,25 +13,24 @@ class GetPhotos{
     var images = [FlickItem]()
     var collectionViewCtrl: CollectionViewController?
     
-    func gotImage(data: NSData?, title: String){
+    func gotImage(data: NSData?, title: String, baseURL: String, farm: String, server: String , secret: String, id: String){
         guard data != nil else {
             print("no data")
             return
         }
         
         let image = UIImage(data: data!)
-        let item = FlickItem(title: title, image: image!)
+        let item = FlickItem(title: title, smImg: image!, baseURL: baseURL, farm: farm, server: server , secret: secret, id: id)
         
         images.append(item)
         
         dispatch_async(dispatch_get_main_queue(),
             { () -> Void in
-                //let indexPath = NSIndexPath.init(forRow: (self.images.count)-1, inSection: 0)
-                //self.collectionViewCtrl?.collectionView?.insertItemsAtIndexPaths([indexPath])
                 self.collectionViewCtrl?.collectionView?.reloadData()
             }
         )
     }
+    
     
     func handleData(data : NSData?){
         guard data != nil else {
@@ -50,15 +49,17 @@ class GetPhotos{
                 //let first = photo[i]
             for var first in photo {
                 // grab parameters for URL
-                let farm = first["farm"]!
-                let server = first["server"]!
-                let secret = first["secret"]!
+                let farm = first["farm"]! as! String
+                let server = first["server"]! as! String
+                let secret = first["secret"]! as! String
                 let id = first["id"]! as! String
                 let title = first["title"]! as! String
                 print(title)
                 
                 // form URL with appropriate parameters
-                let imageURL = "https://farm\(farm!).staticflickr.com/\(server!)/\(id)_\(secret!)_z.jpg"
+                let size = "t.jpg"
+                let baseURL = "https://farm\(farm).staticflickr.com/\(server)/\(id)_\(secret)_"
+                let imageURL = baseURL + size
                 let session = NSURLSession.sharedSession()
                 
                 let task = session.dataTaskWithURL(
@@ -66,7 +67,7 @@ class GetPhotos{
                     completionHandler: {
                         data,
                         response,
-                        error in self.gotImage(data, title: title)
+                        error in self.gotImage(data, title: title, baseURL: baseURL, farm: farm, server: server, secret: secret, id: id)
                     }
                 )
                 task.resume()

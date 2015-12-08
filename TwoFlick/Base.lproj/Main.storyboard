@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BWd-us-H5j">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9058" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BWd-us-H5j">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9048"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -92,7 +92,7 @@
                                 <animations/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hok-A1-tu5">
-                                <rect key="frame" x="40" y="536" width="520" height="18"/>
+                                <rect key="frame" x="40" y="536" width="520" height="14"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -107,6 +107,7 @@
                             <constraint firstItem="bbr-JS-peM" firstAttribute="top" secondItem="zuD-f4-RNW" secondAttribute="bottom" constant="8" id="CUr-vi-3ZW"/>
                             <constraint firstItem="hok-A1-tu5" firstAttribute="top" secondItem="bbr-JS-peM" secondAttribute="bottom" constant="8" id="LPh-0f-gat"/>
                             <constraint firstItem="hok-A1-tu5" firstAttribute="centerX" secondItem="bbr-JS-peM" secondAttribute="centerX" id="fbB-0b-Mpi"/>
+                            <constraint firstItem="hCK-5H-Fea" firstAttribute="top" secondItem="hok-A1-tu5" secondAttribute="bottom" constant="50" id="rC0-M3-rl1"/>
                             <constraint firstItem="bbr-JS-peM" firstAttribute="leading" secondItem="exy-jP-PgS" secondAttribute="leadingMargin" constant="-20" id="u5L-dD-azw"/>
                             <constraint firstItem="hok-A1-tu5" firstAttribute="leading" secondItem="exy-jP-PgS" secondAttribute="leadingMargin" constant="20" id="zu4-7T-Vc0"/>
                         </constraints>

@@ -72,7 +72,7 @@ class CollectionViewController: UICollectionViewController {
         // Configure the cell
         // get a handle on the next item to be shown
         let item = getFotos.images[indexPath.row]
-        cell.flickImage.image = item.image
+        cell.flickImage.image = item.smImage
         
     
         return cell
@@ -110,3 +110,38 @@ class CollectionViewController: UICollectionViewController {
     */
 
 }
+
+/*
+
+extension CollectionViewController : UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        // 1
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        textField.addSubview(activityIndicator)
+        activityIndicator.frame = textField.bounds
+        activityIndicator.startAnimating()
+        flickr.searchFlickrForTerm(textField.text!) {
+            results, error in
+            
+            //2
+            activityIndicator.removeFromSuperview()
+            if error != nil {
+                print("Error searching : \(error)")
+            }
+            
+            if results != nil {
+                //3
+                print("Found \(results!.searchResults.count) matching \(results!.searchTerm)")
+                self.searches.insert(results!, atIndex: 0)
+                
+                //4
+                self.collectionView?.reloadData()
+            }
+        }
+        
+        textField.text = nil
+        textField.resignFirstResponder()
+        return true
+    }
+}
+*/

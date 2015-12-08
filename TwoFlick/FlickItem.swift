@@ -10,11 +10,22 @@ import UIKit
 
 // the data structure for each item
 class FlickItem {
+    var baseURL: String
+    var farm: String
+    var server: String
+    var secret: String
+    var id: String
     var title: String
-    var image: UIImage
+    var smImage: UIImage
     
-    init(title: String, image: UIImage) {
+    init(title: String, smImg: UIImage, baseURL: String, farm: String, server: String , secret: String, id: String) {
         self.title = title
-        self.image = image
+        self.smImage = smImg
+        self.baseURL = baseURL
+        
+        self.farm = farm
+        self.server = server
+        self.secret = secret
+        self.id = id
     }
 }
