@@ -13,14 +13,14 @@ class GetPhotos{
     var images = [FlickItem]()
     var collectionViewCtrl: CollectionViewController?
     
-    func gotImage(data: NSData?, title: String, baseURL: String, farm: String, server: String , secret: String, id: String){
+    func gotImage(data: NSData?, title: String, baseURL: String, farm: Int, server: String , secret: String, id: String, owner: String){
         guard data != nil else {
             print("no data")
             return
         }
         
         let image = UIImage(data: data!)
-        let item = FlickItem(title: title, smImg: image!, baseURL: baseURL, farm: farm, server: server , secret: secret, id: id)
+        let item = FlickItem(title: title, smImg: image!, baseURL: baseURL, farm: farm, server: server , secret: secret, id: id, owner: owner)
         
         images.append(item)
         
@@ -49,11 +49,12 @@ class GetPhotos{
                 //let first = photo[i]
             for var first in photo {
                 // grab parameters for URL
-                let farm = first["farm"]! as! String
+                let farm = first["farm"]! as! Int
                 let server = first["server"]! as! String
                 let secret = first["secret"]! as! String
                 let id = first["id"]! as! String
                 let title = first["title"]! as! String
+                let owner = first["owner"]! as! String
                 print(title)
                 
                 // form URL with appropriate parameters
@@ -67,7 +68,7 @@ class GetPhotos{
                     completionHandler: {
                         data,
                         response,
-                        error in self.gotImage(data, title: title, baseURL: baseURL, farm: farm, server: server, secret: secret, id: id)
+                        error in self.gotImage(data, title: title, baseURL: baseURL, farm: farm, server: server, secret: secret, id: id, owner: owner)
                     }
                 )
                 task.resume()

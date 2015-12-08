@@ -11,14 +11,15 @@ import UIKit
 // the data structure for each item
 class FlickItem {
     var baseURL: String
-    var farm: String
+    var farm: Int
     var server: String
     var secret: String
     var id: String
     var title: String
+    var owner: String
     var smImage: UIImage
     
-    init(title: String, smImg: UIImage, baseURL: String, farm: String, server: String , secret: String, id: String) {
+    init(title: String, smImg: UIImage, baseURL: String, farm: Int, server: String , secret: String, id: String, owner: String) {
         self.title = title
         self.smImage = smImg
         self.baseURL = baseURL
@@ -27,5 +28,6 @@ class FlickItem {
         self.server = server
         self.secret = secret
         self.id = id
+        self.owner = owner
     }
 }

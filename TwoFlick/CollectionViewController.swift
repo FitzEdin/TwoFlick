@@ -111,7 +111,7 @@ class CollectionViewController: UICollectionViewController {
 
 }
 
-/*
+
 
 extension CollectionViewController : UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -120,7 +120,7 @@ extension CollectionViewController : UITextFieldDelegate {
         textField.addSubview(activityIndicator)
         activityIndicator.frame = textField.bounds
         activityIndicator.startAnimating()
-        flickr.searchFlickrForTerm(textField.text!) {
+  /*      flickr.searchFlickrForTerm(textField.text!) {
             results, error in
             
             //2
@@ -138,10 +138,11 @@ extension CollectionViewController : UITextFieldDelegate {
                 self.collectionView?.reloadData()
             }
         }
+*/
         
         textField.text = nil
         textField.resignFirstResponder()
         return true
     }
 }
-*/
+

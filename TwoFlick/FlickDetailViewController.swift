@@ -18,16 +18,16 @@ class FlickDetailViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        self.navigationItem.title = item.title
-        self.url = item.baseURL
         self.flickLabel.text = item.title
+        self.url = item.baseURL
+        
+        // add rounding to the image's corners
+        flickImageVw.layer.cornerRadius = 20
+        flickImageVw.clipsToBounds = true
         self.flickImageVw.image = item.smImage
         
         loadLgImg()
-        
-        // add rounding to the image's corners
-        /*flickImageVw.layer.cornerRadius = 20
-        flickImageVw.clipsToBounds = true*/
+        getUser()
     }
     
     //function for loading the large image
@@ -47,7 +47,6 @@ class FlickDetailViewController: UIViewController {
         task.resume()
     }
     
-    
     func gotLgImage(data: NSData?){
         guard data != nil else {
             print("no data")
@@ -60,6 +59,46 @@ class FlickDetailViewController: UIViewController {
         dispatch_async(
             dispatch_get_main_queue(),
             {   self.flickImageVw.image = image }
+        )
+    }
+    
+    
+    func getUser(){
+        let apiKey = "018c00fa2d9b15eea951e9a9efa8137d"
+        let url = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.people.getInfo&api_key=\(apiKey)&user_id=\(item.owner)&format=json&nojsoncallback=1")!
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithURL(
+            url,
+            completionHandler: {
+                data,
+                response,
+                error in self.gotOwner(data!)
+            }
+        )
+        
+        task.resume()
+    }
+    
+    func gotOwner(data: NSData?){
+        var name: String!
+        guard data != nil else {
+            print("no data")
+            return
+        }
+        
+        do {
+            let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
+            
+            let photos = jsonData["person"] as! NSDictionary
+            let photo = photos["username"] as! NSDictionary
+            name = photo["_content"] as! String
+        } catch let error {
+            print("error \(error)")
+        }
+        
+        dispatch_async(
+            dispatch_get_main_queue(),
+            {   self.navigationItem.title = name }
         )
     }
 

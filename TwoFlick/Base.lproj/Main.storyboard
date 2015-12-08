@@ -88,30 +88,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bbr-JS-peM">
-                                <rect key="frame" x="0.0" y="72" width="600" height="456"/>
+                                <rect key="frame" x="22" y="102" width="556" height="396"/>
                                 <animations/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hok-A1-tu5">
-                                <rect key="frame" x="40" y="536" width="520" height="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hok-A1-tu5">
+                                <rect key="frame" x="52" y="492" width="496" height="0.0"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.75293359722269493" green="0.93220827582806165" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" red="0.093190631534586371" green="0.57849294066533052" blue="0.84540963172912598" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bbr-JS-peM" firstAttribute="centerY" secondItem="exy-jP-PgS" secondAttribute="centerY" id="3Tp-a8-hjS"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bbr-JS-peM" secondAttribute="trailing" constant="-20" id="6UL-oF-KFr"/>
-                            <constraint firstItem="bbr-JS-peM" firstAttribute="top" secondItem="zuD-f4-RNW" secondAttribute="bottom" constant="8" id="CUr-vi-3ZW"/>
-                            <constraint firstItem="hok-A1-tu5" firstAttribute="top" secondItem="bbr-JS-peM" secondAttribute="bottom" constant="8" id="LPh-0f-gat"/>
-                            <constraint firstItem="hok-A1-tu5" firstAttribute="centerX" secondItem="bbr-JS-peM" secondAttribute="centerX" id="fbB-0b-Mpi"/>
-                            <constraint firstItem="hCK-5H-Fea" firstAttribute="top" secondItem="hok-A1-tu5" secondAttribute="bottom" constant="50" id="rC0-M3-rl1"/>
-                            <constraint firstItem="bbr-JS-peM" firstAttribute="leading" secondItem="exy-jP-PgS" secondAttribute="leadingMargin" constant="-20" id="u5L-dD-azw"/>
-                            <constraint firstItem="hok-A1-tu5" firstAttribute="leading" secondItem="exy-jP-PgS" secondAttribute="leadingMargin" constant="20" id="zu4-7T-Vc0"/>
+                            <constraint firstItem="hok-A1-tu5" firstAttribute="top" secondItem="bbr-JS-peM" secondAttribute="bottom" constant="-6" id="3jn-WD-kKg"/>
+                            <constraint firstItem="hCK-5H-Fea" firstAttribute="top" secondItem="hok-A1-tu5" secondAttribute="bottom" constant="64" id="7xT-Jd-X3g"/>
+                            <constraint firstItem="hok-A1-tu5" firstAttribute="centerX" secondItem="exy-jP-PgS" secondAttribute="centerX" id="8aO-Kb-Hhh"/>
+                            <constraint firstItem="bbr-JS-peM" firstAttribute="top" secondItem="zuD-f4-RNW" secondAttribute="bottom" constant="38" id="PgI-Yj-2jG"/>
+                            <constraint firstItem="bbr-JS-peM" firstAttribute="centerY" secondItem="exy-jP-PgS" secondAttribute="centerY" id="g1g-ff-7LK"/>
+                            <constraint firstItem="hCK-5H-Fea" firstAttribute="top" secondItem="bbr-JS-peM" secondAttribute="bottom" constant="58" id="hBV-Hf-44h"/>
+                            <constraint firstItem="hok-A1-tu5" firstAttribute="leading" secondItem="exy-jP-PgS" secondAttribute="leadingMargin" constant="32" id="sg8-K3-Gz3"/>
+                            <constraint firstItem="bbr-JS-peM" firstAttribute="leading" secondItem="exy-jP-PgS" secondAttribute="leadingMargin" constant="2" id="yaj-kt-yW1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hok-A1-tu5" secondAttribute="trailing" constant="32" id="ye6-eE-ZLA"/>
+                            <constraint firstItem="bbr-JS-peM" firstAttribute="centerX" secondItem="exy-jP-PgS" secondAttribute="centerX" id="yxJ-wn-4bR"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
