@@ -17,11 +17,9 @@ class FlickItem {
     var id: String
     var title: String
     var owner: String
-    var ownerName: String
-    var views: Int
     var smImage: UIImage
     
-    init(title: String, smImg: UIImage, baseURL: String, farm: Int, server: String , secret: String, id: String, owner: String, ownerName: String, views: Int) {
+    init(title: String, smImg: UIImage, baseURL: String, farm: Int, server: String , secret: String, id: String, owner: String) {
         self.title = title
         self.smImage = smImg
         self.baseURL = baseURL
@@ -31,7 +29,5 @@ class FlickItem {
         self.secret = secret
         self.id = id
         self.owner = owner
-        self.ownerName = ownerName
-        self.views = views
     }
 }

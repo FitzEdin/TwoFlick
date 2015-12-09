@@ -14,20 +14,15 @@ private let reuseIdentifier = "Cell"
 class CollectionViewController: UICollectionViewController {
     
     var flickList = [FlickItem]()
-    var getFotos = GetPhotos()
-
+    var getFotos = GetPhotos(apiKey: "018c00fa2d9b15eea951e9a9efa8137d")
+    var page = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getFotos.collectionViewCtrl = self
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        //self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        getFotos.grabRecentPhotos(page)
+        page++
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,13 +33,12 @@ class CollectionViewController: UICollectionViewController {
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
         
         let selection = self.collectionView?.indexPathsForSelectedItems()!
-        let item = getFotos.images[selection![0].row]
+        let item = flickList[selection![0].row]
         let dest = segue.destinationViewController as! FlickDetailViewController
         dest.item = item
     }
@@ -53,13 +47,12 @@ class CollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     // the number of items in the list
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return getFotos.images.count
+        return flickList.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -71,39 +64,36 @@ class CollectionViewController: UICollectionViewController {
     
         // Configure the cell
         // get a handle on the next item to be shown
-        let item = getFotos.images[indexPath.row]
+        let item = flickList[indexPath.row]
         cell.flickImage.image = item.smImage
         
-    
+        let num = flickList.count - indexPath.row
+        
+        if num < 30 {
+            //load the next page of images
+            getFotos.grabRecentPhotos(page)
+            page++
+        }
+        
         return cell
     }
 }
 
-
-
 extension CollectionViewController : UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        flickList.removeAll()
         // 1
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
         textField.addSubview(activityIndicator)
         activityIndicator.frame = textField.bounds
         activityIndicator.startAnimating()
-        flickr.searchFlickrForTerm(textField.text!) {
-            results, error in
-            
-            //2
-            activityIndicator.removeFromSuperview()
-            if error != nil {
-                print("Error searching : \(error)")
-            }
-            
-            if results != nil {
-                //3
-                print("Found \(results!.searchResults.count) matching \(results!.searchTerm)")
-                self.searchResults.insert(results!, atIndex: 0)
-                
-                //4
-                self.collectionView?.reloadData()
+        if let tx = textField.text{
+            let newTx = tx.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())
+            if(newTx == ""){
+                //pop up indicator?
+            }else{
+                getFotos.searchFor(newTx!)
+                activityIndicator.stopAnimating()
             }
         }
         
@@ -112,4 +102,3 @@ extension CollectionViewController : UITextFieldDelegate {
         return true
     }
 }
-

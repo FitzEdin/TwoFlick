@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CFB3BE1B1C17021E00F6567E /* SearchPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB3BE1A1C17021E00F6567E /* SearchPhotos.swift */; };
 		F2B312D31C0D363F00ECBB50 /* FlickDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B312D21C0D363F00ECBB50 /* FlickDetailViewController.swift */; };
 		F2C9DBCF1C0B57D200A716B0 /* GetPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C9DBCE1C0B57D200A716B0 /* GetPhotos.swift */; };
 		F2CDE7731C03EB4C002E600D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDE7721C03EB4C002E600D /* AppDelegate.swift */; };
@@ -20,7 +19,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CFB3BE1A1C17021E00F6567E /* SearchPhotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPhotos.swift; sourceTree = "<group>"; };
 		F2B312D21C0D363F00ECBB50 /* FlickDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickDetailViewController.swift; sourceTree = "<group>"; };
 		F2C9DBCE1C0B57D200A716B0 /* GetPhotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPhotos.swift; sourceTree = "<group>"; };
 		F2CDE76F1C03EB4C002E600D /* TwoFlick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwoFlick.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,7 +65,6 @@
 				F2B312D21C0D363F00ECBB50 /* FlickDetailViewController.swift */,
 				F2CDE7861C03ECD6002E600D /* CollectionViewController.swift */,
 				F2C9DBCE1C0B57D200A716B0 /* GetPhotos.swift */,
-				CFB3BE1A1C17021E00F6567E /* SearchPhotos.swift */,
 				F2CDE7791C03EB4C002E600D /* Assets.xcassets */,
 				F2CDE7761C03EB4C002E600D /* Main.storyboard */,
 				F2CDE7841C03EC84002E600D /* FlickCell.swift */,
@@ -153,7 +150,6 @@
 				F2CDE7871C03ECD6002E600D /* CollectionViewController.swift in Sources */,
 				F2B312D31C0D363F00ECBB50 /* FlickDetailViewController.swift in Sources */,
 				F2CDE7851C03EC84002E600D /* FlickCell.swift in Sources */,
-				CFB3BE1B1C17021E00F6567E /* SearchPhotos.swift in Sources */,
 				F2C9DBCF1C0B57D200A716B0 /* GetPhotos.swift in Sources */,
 				F2CDE7891C03ED9B002E600D /* FlickItem.swift in Sources */,
 				F2CDE7731C03EB4C002E600D /* AppDelegate.swift in Sources */,
