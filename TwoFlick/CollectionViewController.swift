@@ -21,8 +21,6 @@ class CollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         getFotos.collectionViewCtrl = self
-        getFotos.grabRecentPhotos(page)
-        page++
     }
 
     override func didReceiveMemoryWarning() {
