@@ -15,6 +15,7 @@ class GetPhotos{
     var apiKey : String
     var page : Int!
     var count : Int!
+    var search = false
     
     func gotImage(data: NSData?, title: String, baseURL: String, farm: Int, server: String , secret: String, id: String, owner: String){
         guard data != nil else {
@@ -26,8 +27,19 @@ class GetPhotos{
         let item = FlickItem(title: title, smImg: image!, baseURL: baseURL, farm: farm, server: server, secret: secret, id: id, owner: owner)
         images.append(item)
         
+        if(search && (images.count)%10 == 0){
+            dispatch_async(dispatch_get_main_queue(),
+                { () -> Void in
+                    self.collectionViewCtrl?.flickList.appendContentsOf(self.images)
+                    self.collectionViewCtrl?.collectionView?.reloadData()
+                    self.images.removeAll()
+                    print("Page: \(self.page)")
+                }
+            )
+        }
         
-        if(images.count >= page*count){
+        
+        if((images.count >= 50) && search == false){
             dispatch_async(dispatch_get_main_queue(),
                 { () -> Void in
                     self.collectionViewCtrl?.flickList.appendContentsOf(self.images)
@@ -84,6 +96,9 @@ class GetPhotos{
     }
     
     func searchFor(searchTerm: String){
+        
+        print("search func entered")
+        search = true
         let str = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&text=\(searchTerm)&format=json&nojsoncallback=1"
         let url = NSURL(string: str)!
         let session = NSURLSession.sharedSession()
@@ -100,6 +115,7 @@ class GetPhotos{
     }
     
     func grabRecentPhotos(page : Int) {
+        search = false
         (self.page!)++
         let url = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=\(apiKey)&per_page=\(count)&page=\(self.page)&format=json&nojsoncallback=1")!
         

@@ -62,24 +62,33 @@ class CollectionViewController: UICollectionViewController {
     
         // Configure the cell
         // get a handle on the next item to be shown
+        print(indexPath.row)
+        print(flickList.count)
         let item = flickList[indexPath.row]
         cell.flickImage.image = item.smImage
+        return cell
+    }
+    
+    override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        let num = flickList.count - indexPath.item
         
-        let num = flickList.count - indexPath.row
-        
-        if num < 30 {
+        if num == 30 {
             //load the next page of images
             getFotos.grabRecentPhotos(page)
             page++
         }
-        
-        return cell
+
     }
 }
 
 extension CollectionViewController : UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        print("should return")
         flickList.removeAll()
+        
+        //resets the collection view and scroll position
+        self.collectionView?.reloadData()
         // 1
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
         textField.addSubview(activityIndicator)
@@ -91,6 +100,7 @@ extension CollectionViewController : UITextFieldDelegate {
                 //pop up indicator?
             }else{
                 getFotos.searchFor(newTx!)
+                
                 activityIndicator.stopAnimating()
             }
         }
