@@ -26,21 +26,23 @@ class GetPhotos{
         let image = UIImage(data: data!)
         let item = FlickItem(title: title, smImg: image!, baseURL: baseURL, farm: farm, server: server, secret: secret, id: id, owner: owner)
         images.append(item)
-        
+  /*
         if(search && (images.count)%10 == 0){
             dispatch_async(dispatch_get_main_queue(),
                 { () -> Void in
+                    self.collectionViewCtrl?.lgActivityIndicator.stopAnimating()
                     self.collectionViewCtrl?.flickList.appendContentsOf(self.images)
                     self.collectionViewCtrl?.collectionView?.reloadData()
                     self.images.removeAll()
                 }
             )
         }
+  */
         
-        
-        if(((images.count) % 50 == 0) && (search == false)){
+        if(((images.count) % 50 == 0) /*&& (search == false)*/){
             dispatch_async(dispatch_get_main_queue(),
                 { () -> Void in
+                    self.collectionViewCtrl?.lgActivityIndicator.stopAnimating()
                     self.collectionViewCtrl?.flickList.appendContentsOf(self.images)
                     self.collectionViewCtrl?.collectionView?.reloadData()
                     self.images.removeAll()

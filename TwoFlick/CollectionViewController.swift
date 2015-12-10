@@ -16,11 +16,14 @@ class CollectionViewController: UICollectionViewController {
     var flickList = [FlickItem]()
     var getFotos = GetPhotos(apiKey: "018c00fa2d9b15eea951e9a9efa8137d")
     var page = 1
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    @IBOutlet weak var lgActivityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getFotos.collectionViewCtrl = self
+        lgActivityIndicator.startAnimating()
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,8 +80,20 @@ class CollectionViewController: UICollectionViewController {
             getFotos.grabRecentPhotos(page)
             page++
         }
-
     }
+    
+    @IBAction func refreshFlicks(sender: AnyObject) {
+        lgActivityIndicator.startAnimating()
+
+        flickList.removeAll()
+        //resets the collection view and scroll position
+        self.collectionView?.reloadData()
+        
+        self.collectionView?.addSubview(activityIndicator)
+        
+        getFotos.grabRecentPhotos(1)
+    }
+    
 }
 
 extension CollectionViewController : UITextFieldDelegate {
@@ -87,19 +102,18 @@ extension CollectionViewController : UITextFieldDelegate {
         
         //resets the collection view and scroll position
         self.collectionView?.reloadData()
-        // 1
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
-        textField.addSubview(activityIndicator)
-        activityIndicator.frame = textField.bounds
-        activityIndicator.startAnimating()
+        // spin that activity indicator until the search returns
+ /*       textField.addSubview(activityIndicator)
+        activityIndicator.frame = textField.bounds      */
+        lgActivityIndicator.startAnimating()
+
+        
         if let tx = textField.text{
             let newTx = tx.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())
             if(newTx == ""){
                 //pop up indicator?
             }else{
                 getFotos.searchFor(newTx!)
-                
-                activityIndicator.stopAnimating()
             }
         }
         

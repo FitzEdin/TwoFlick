@@ -12,7 +12,30 @@ class FlickDetailViewController: UIViewController {
     var item : FlickItem!
     @IBOutlet weak var flickImageVw: UIImageView!
     @IBOutlet weak var flickLabel: UILabel!
-    @IBOutlet weak var flickLabel2: UILabel!
+    @IBOutlet weak var flickOwnerLabel: UILabel!
+    @IBAction func flickShare(sender: AnyObject) {
+        let alertController = UIAlertController(
+            title: "Flick 2 Da World!",
+            message: "Share this image on social media.",
+            preferredStyle: .Alert
+        )
+        
+        alertController.addAction(
+            UIAlertAction(
+                title: "Share",
+                style: .Default,
+                handler:nil )
+        )
+        
+        alertController.addAction(
+            UIAlertAction(
+                title: "Cancel",
+                style: .Destructive,
+                handler:nil )
+        )
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
     
     var lgImg : UIImage!
     var url : String!
@@ -100,7 +123,9 @@ class FlickDetailViewController: UIViewController {
         
         dispatch_async(
             dispatch_get_main_queue(),
-            {   self.navigationItem.title = name }
+            {   self.navigationItem.title = name
+                self.flickOwnerLabel.text = "More by \(name)"
+            }
         )
     }
 

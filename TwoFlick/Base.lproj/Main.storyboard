@@ -22,6 +22,11 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
                         </collectionViewFlowLayout>
+                        <activityIndicatorView key="backgroundView" hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="a3e-IU-w2X">
+                            <rect key="frame" x="0.0" y="-64" width="600" height="600"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <animations/>
+                        </activityIndicatorView>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="Cell" id="nUa-0P-wEI" customClass="FlickCell" customModule="TwoFlick" customModuleProvider="target">
                                 <rect key="frame" x="5" y="69" width="165" height="100"/>
@@ -69,7 +74,15 @@
                                 <outlet property="delegate" destination="bSQ-xF-Nz5" id="TSZ-y9-PBQ"/>
                             </connections>
                         </textField>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Gc4-ce-d5D">
+                            <connections>
+                                <action selector="refreshFlicks:" destination="bSQ-xF-Nz5" id="CIo-B2-9rd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="lgActivityIndicator" destination="a3e-IU-w2X" id="IkJ-5b-RO3"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="awe-9D-dBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -78,7 +91,7 @@
         <!--Flick Detail View Controller-->
         <scene sceneID="MnD-h9-3Ey">
             <objects>
-                <viewController id="moV-M6-9oY" customClass="FlickDetailViewController" customModule="TwoFlick" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="partialCurl" id="moV-M6-9oY" customClass="FlickDetailViewController" customModule="TwoFlick" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zuD-f4-RNW"/>
                         <viewControllerLayoutGuide type="bottom" id="hCK-5H-Fea"/>
@@ -112,8 +125,8 @@
                                 <color key="textColor" red="0.041505635280000001" green="0.79789367950000001" blue="0.98244265289999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Owner Name" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPo-3u-DpN">
-                                <rect key="frame" x="40" y="494" width="89.5" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More by" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPo-3u-DpN">
+                                <rect key="frame" x="40" y="494" width="56" height="18"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.041505635280000001" green="0.79789367950000001" blue="0.98244265289999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -152,7 +165,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Gpv-rS-jvy">
-                        <barButtonItem key="rightBarButtonItem" title="Share" id="d1x-ze-qk5"/>
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="sa0-dO-84j">
+                            <connections>
+                                <action selector="flickShare:" destination="moV-M6-9oY" id="m0R-JB-6JP"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -160,6 +177,7 @@
                     <connections>
                         <outlet property="flickImageVw" destination="bbr-JS-peM" id="9zs-hE-jSd"/>
                         <outlet property="flickLabel" destination="hok-A1-tu5" id="Yrn-Kv-gzc"/>
+                        <outlet property="flickOwnerLabel" destination="nPo-3u-DpN" id="YFU-c0-x2F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E91-om-aP4" userLabel="First Responder" sceneMemberID="firstResponder"/>
