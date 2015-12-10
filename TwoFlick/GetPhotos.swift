@@ -33,19 +33,17 @@ class GetPhotos{
                     self.collectionViewCtrl?.flickList.appendContentsOf(self.images)
                     self.collectionViewCtrl?.collectionView?.reloadData()
                     self.images.removeAll()
-                    print("Page: \(self.page)")
                 }
             )
         }
         
         
-        if((images.count >= 50) && search == false){
+        if(((images.count) % 50 == 0) && (search == false)){
             dispatch_async(dispatch_get_main_queue(),
                 { () -> Void in
                     self.collectionViewCtrl?.flickList.appendContentsOf(self.images)
                     self.collectionViewCtrl?.collectionView?.reloadData()
                     self.images.removeAll()
-                    print("Page: \(self.page)")
                 }
             )
         }
@@ -96,8 +94,6 @@ class GetPhotos{
     }
     
     func searchFor(searchTerm: String){
-        
-        print("search func entered")
         search = true
         let str = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&text=\(searchTerm)&format=json&nojsoncallback=1"
         let url = NSURL(string: str)!

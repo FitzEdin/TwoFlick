@@ -83,8 +83,6 @@ class CollectionViewController: UICollectionViewController {
 
 extension CollectionViewController : UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
-        print("should return")
         flickList.removeAll()
         
         //resets the collection view and scroll position

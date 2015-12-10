@@ -14,12 +14,12 @@ class FlickCell: UICollectionViewCell {
     weak var flickImage: UIImageView!
     
     override func awakeFromNib() {
-        flickImage.layer.cornerRadius = 5
+        flickImage.layer.cornerRadius = 3
         flickImage.clipsToBounds = true
-     
+    /*
         layer.shadowColor = UIColor.blackColor().CGColor
         layer.shadowOffset = CGSizeMake(0, 2)
         layer.shadowRadius = 2
-        layer.shadowOpacity = 0.8
+        layer.shadowOpacity = 0.8       */
     }
 }

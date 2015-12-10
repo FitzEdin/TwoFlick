@@ -13,6 +13,7 @@ class FlickDetailViewController: UIViewController {
     @IBOutlet weak var flickImageVw: UIImageView!
     @IBOutlet weak var flickLabel: UILabel!
     @IBOutlet weak var flickLabel2: UILabel!
+    
     var lgImg : UIImage!
     var url : String!
     let size = "z.jpg"
@@ -23,9 +24,9 @@ class FlickDetailViewController: UIViewController {
         self.url = item.baseURL
         
         // add rounding to the image's corners
-        flickImageVw.layer.cornerRadius = 20
-        flickImageVw.clipsToBounds = true
-        self.flickImageVw.image = item.smImage
+  /*      flickImageVw.layer.cornerRadius = 20
+        flickImageVw.clipsToBounds = true       */
+        self.flickImageVw.image = item.smImage  
         
         loadLgImg()
         getUser()
