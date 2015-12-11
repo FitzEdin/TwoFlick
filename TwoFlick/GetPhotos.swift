@@ -10,36 +10,25 @@ import UIKit
 
 class GetPhotos{
     
-    var images = [FlickItem]()
     var collectionViewCtrl: CollectionViewController?
-    var apiKey : String
-    var page : Int!
-    var count : Int!
-    var search = false
+    private var images = [FlickItem]()
+    private var apiKey : String
+    private var page : Int!
+    private var count : Int!
     
-    func gotImage(data: NSData?, title: String, baseURL: String, farm: Int, server: String , secret: String, id: String, owner: String){
+    // get smaller image for flickItem
+    private func gotImage(data: NSData?, title: String, baseURL: String, farm: Int, server: String , secret: String, id: String, owner: String){
         guard data != nil else {
             print("no data")
             return
         }
         
+        // extract image and create flickItem
         let image = UIImage(data: data!)
         let item = FlickItem(title: title, smImg: image!, baseURL: baseURL, farm: farm, server: server, secret: secret, id: id, owner: owner)
         images.append(item)
-  /*
-        if(search && (images.count)%10 == 0){
-            dispatch_async(dispatch_get_main_queue(),
-                { () -> Void in
-                    self.collectionViewCtrl?.lgActivityIndicator.stopAnimating()
-                    self.collectionViewCtrl?.flickList.appendContentsOf(self.images)
-                    self.collectionViewCtrl?.collectionView?.reloadData()
-                    self.images.removeAll()
-                }
-            )
-        }
-  */
         
-        if(((images.count) % 50 == 0) /*&& (search == false)*/){
+        if((images.count) % 50 == 0){
             dispatch_async(dispatch_get_main_queue(),
                 { () -> Void in
                     self.collectionViewCtrl?.lgActivityIndicator.stopAnimating()
@@ -51,8 +40,8 @@ class GetPhotos{
         }
     }
     
-    
-    func handleData(data : NSData?){
+    // parse that JSON data
+    private func handleData(data : NSData?){
         guard data != nil else {
             print("no data")
             return
@@ -78,8 +67,9 @@ class GetPhotos{
                 let size = "t.jpg"
                 let baseURL = "https://farm\(farm).staticflickr.com/\(server)/\(id)_\(secret)_"
                 let imageURL = baseURL + size
-                let session = NSURLSession.sharedSession()
                 
+                // request data
+                let session = NSURLSession.sharedSession()
                 let task = session.dataTaskWithURL(
                     NSURL(string: imageURL)!,
                     completionHandler: {
@@ -88,6 +78,7 @@ class GetPhotos{
                         error in self.gotImage(data, title: title, baseURL: baseURL, farm: farm, server: server, secret: secret, id: id, owner: owner)
                     }
                 )
+                
                 task.resume()
             }
         } catch let error {
@@ -95,10 +86,13 @@ class GetPhotos{
         }
     }
     
-    func searchFor(searchTerm: String){
-        search = true
+    // perform a search with a particular term
+    public func searchFor(searchTerm: String){
+        // generate a url using the search term
         let str = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&text=\(searchTerm)&format=json&nojsoncallback=1"
         let url = NSURL(string: str)!
+        
+        // perform the search
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(
             url,
@@ -112,11 +106,13 @@ class GetPhotos{
         task.resume()
     }
     
-    func grabRecentPhotos(page : Int) {
-        search = false
+    // grab the most recent set of pics..
+    public func grabRecentPhotos(page : Int) {
+        // generate a url
         (self.page!)++
         let url = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=\(apiKey)&per_page=\(count)&page=\(self.page)&format=json&nojsoncallback=1")!
         
+        // grab the data from url
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(
             url,
@@ -130,6 +126,7 @@ class GetPhotos{
         task.resume()
     }
     
+    // set initial values and get the first set of photos
     init(apiKey: String){
         self.apiKey = apiKey
         self.page = 0

@@ -9,7 +9,12 @@
 import UIKit
 
 class FlickDetailViewController: UIViewController {
+    
+    var lgImg : UIImage!
+    var url : String!
+    let size = "z.jpg"
     var item : FlickItem!
+    
     @IBOutlet weak var flickImageVw: UIImageView!
     @IBOutlet weak var flickLabel: UILabel!
     @IBOutlet weak var flickOwnerLabel: UILabel!
@@ -37,18 +42,14 @@ class FlickDetailViewController: UIViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
-    var lgImg : UIImage!
-    var url : String!
-    let size = "z.jpg"
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         self.flickLabel.text = item.title
         self.url = item.baseURL
         
         // add rounding to the image's corners
-  /*      flickImageVw.layer.cornerRadius = 20
-        flickImageVw.clipsToBounds = true       */
+        flickImageVw.layer.cornerRadius = 3
+        flickImageVw.clipsToBounds = true       
         self.flickImageVw.image = item.smImage  
         
         loadLgImg()
@@ -56,7 +57,7 @@ class FlickDetailViewController: UIViewController {
     }
     
     //function for loading the large image
-    func loadLgImg(){
+    private func loadLgImg(){
         
         let imageURL = url + size
         let session = NSURLSession.sharedSession()
@@ -72,7 +73,7 @@ class FlickDetailViewController: UIViewController {
         task.resume()
     }
     
-    func gotLgImage(data: NSData?){
+    private func gotLgImage(data: NSData?){
         guard data != nil else {
             print("no data")
             return
@@ -88,7 +89,7 @@ class FlickDetailViewController: UIViewController {
     }
     
     
-    func getUser(){
+    private func getUser(){
         let apiKey = "018c00fa2d9b15eea951e9a9efa8137d"
         let url = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.people.getInfo&api_key=\(apiKey)&user_id=\(item.owner)&format=json&nojsoncallback=1")!
         let session = NSURLSession.sharedSession()
@@ -104,7 +105,7 @@ class FlickDetailViewController: UIViewController {
         task.resume()
     }
     
-    func gotOwner(data: NSData?){
+    private func gotOwner(data: NSData?){
         var name: String!
         guard data != nil else {
             print("no data")

@@ -8,36 +8,32 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 // manage the (initial) collection view
 class CollectionViewController: UICollectionViewController {
     
-    var flickList = [FlickItem]()
+    private let reuseIdentifier = "Cell"
+    internal var flickList = [FlickItem]()
     var getFotos = GetPhotos(apiKey: "018c00fa2d9b15eea951e9a9efa8137d")
-    var page = 1
-    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    private var page = 1
     @IBOutlet weak var lgActivityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getFotos.collectionViewCtrl = self
+        
+        //animate the activity indicator
         lgActivityIndicator.startAnimating()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     
     // MARK: - Navigation
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-        
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {        
         let selection = self.collectionView?.indexPathsForSelectedItems()!
         let item = flickList[selection![0].row]
         let dest = segue.destinationViewController as! FlickDetailViewController
@@ -65,13 +61,13 @@ class CollectionViewController: UICollectionViewController {
     
         // Configure the cell
         // get a handle on the next item to be shown
-        print(indexPath.row)
-        print(flickList.count)
         let item = flickList[indexPath.row]
         cell.flickImage.image = item.smImage
+        
         return cell
     }
     
+    //implement infinite scrolling
     override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         let num = flickList.count - indexPath.item
         
@@ -82,32 +78,24 @@ class CollectionViewController: UICollectionViewController {
         }
     }
     
+    // refresh the feed on button click
     @IBAction func refreshFlicks(sender: AnyObject) {
-        lgActivityIndicator.startAnimating()
-
-        flickList.removeAll()
-        //resets the collection view and scroll position
-        self.collectionView?.reloadData()
-        
-        self.collectionView?.addSubview(activityIndicator)
-        
+        refreshSelf()
         getFotos.grabRecentPhotos(1)
+    }
+    
+    private func refreshSelf(){
+        lgActivityIndicator.startAnimating()// spin the activity indicator
+        flickList.removeAll()               // empty the collection view
+        self.collectionView?.reloadData()   // and reset the scroll position
     }
     
 }
 
 extension CollectionViewController : UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        flickList.removeAll()
-        
-        //resets the collection view and scroll position
-        self.collectionView?.reloadData()
-        // spin that activity indicator until the search returns
- /*       textField.addSubview(activityIndicator)
-        activityIndicator.frame = textField.bounds      */
-        lgActivityIndicator.startAnimating()
+        refreshSelf()
 
-        
         if let tx = textField.text{
             let newTx = tx.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())
             if(newTx == ""){
