@@ -19,27 +19,11 @@ class FlickDetailViewController: UIViewController {
     @IBOutlet weak var flickLabel: UILabel!
     @IBOutlet weak var flickOwnerLabel: UILabel!
     @IBAction func flickShare(sender: AnyObject) {
-        let alertController = UIAlertController(
-            title: "Flick 2 Da World!",
-            message: "Share this image on social media.",
-            preferredStyle: .Alert
-        )
+        let message = item.title
+        let image = item.smImage
         
-        alertController.addAction(
-            UIAlertAction(
-                title: "Share",
-                style: .Default,
-                handler:nil )
-        )
-        
-        alertController.addAction(
-            UIAlertAction(
-                title: "Cancel",
-                style: .Destructive,
-                handler:nil )
-        )
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
+        let sheet = UIActivityViewController(activityItems: [message, image], applicationActivities: nil)
+        self.presentViewController(sheet, animated: true, completion: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
