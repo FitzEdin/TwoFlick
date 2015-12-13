@@ -25,8 +25,10 @@ class GetPhotos{
         
         // extract image and create flickItem
         let image = UIImage(data: data!)
-        let item = FlickItem(title: title, smImg: image!, baseURL: baseURL, farm: farm, server: server, secret: secret, id: id, owner: owner)
-        images.append(item)
+        if image != nil {
+            let item = FlickItem(title: title, smImg: image!, baseURL: baseURL, farm: farm, server: server, secret: secret, id: id, owner: owner)
+            images.append(item)
+        }
         
         if((images.count) % 50 == 0){
             dispatch_async(dispatch_get_main_queue(),

@@ -26,6 +26,17 @@ class FlickDetailViewController: UIViewController {
         self.presentViewController(sheet, animated: true, completion: nil)
     }
     
+    @IBAction func flickInfo(sender: UIBarButtonItem) {
+        let me = UIAlertController(title: "Info", message: "All information about the picture", preferredStyle: .ActionSheet)
+        self.presentViewController(me, animated: true, completion: nil)
+    }
+    
+    @IBAction func flickComments(sender: UIBarButtonItem) {
+        let me = UIAlertController(title: "Comments", message: "These are your comments", preferredStyle: UIAlertControllerStyle.Alert)
+        self.presentViewController(me, animated: true, completion: nil)
+    }
+    
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         self.flickLabel.text = item.title
@@ -108,8 +119,8 @@ class FlickDetailViewController: UIViewController {
         
         dispatch_async(
             dispatch_get_main_queue(),
-            {   self.navigationItem.title = name
-                self.flickOwnerLabel.text = "\(name)"
+            {   //self.navigationItem.title = name
+                self.flickOwnerLabel.text = /*"See more by \n*/"By \(name)"
             }
         )
     }
