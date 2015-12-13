@@ -109,7 +109,7 @@ class FlickDetailViewController: UIViewController {
         dispatch_async(
             dispatch_get_main_queue(),
             {   self.navigationItem.title = name
-                self.flickOwnerLabel.text = "More by \(name)"
+                self.flickOwnerLabel.text = "\(name)"
             }
         )
     }

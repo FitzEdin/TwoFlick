@@ -94,15 +94,13 @@ class CollectionViewController: UICollectionViewController {
 
 extension CollectionViewController : UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        refreshSelf()
-
+        if (textField.text == " ")||(textField.text == ""){
+            return true
+        }
         if let tx = textField.text{
             let newTx = tx.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())
-            if(newTx == ""){
-                //pop up indicator?
-            }else{
-                getFotos.searchFor(newTx!)
-            }
+            refreshSelf()
+            getFotos.searchFor(newTx!)
         }
         
         textField.text = nil

@@ -10,7 +10,7 @@
         <scene sceneID="tnJ-zD-P99">
             <objects>
                 <collectionViewController id="bSQ-xF-Nz5" customClass="CollectionViewController" customModule="TwoFlick" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" id="KVo-Ss-Lg0">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" id="KVo-Ss-Lg0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
@@ -112,31 +112,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hok-A1-tu5">
-                                <rect key="frame" x="52" y="430" width="496" height="46"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fligg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hok-A1-tu5">
+                                <rect key="frame" x="52" y="452" width="496" height="22"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.092296770103100181" green="0.11482032219704469" blue="0.1242788461538461" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="255 views" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1B-hM-X2d">
-                                <rect key="frame" x="30" y="504" width="69.5" height="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Owner" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="nPo-3u-DpN">
+                                <rect key="frame" x="277" y="484" width="44.5" height="17.5"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.99194461109999998" green="0.99615627529999995" blue="0.99600595240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tags..." textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BRb-Ll-LW6">
-                                <rect key="frame" x="514.5" y="504" width="45.5" height="32"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.99194461109999998" green="0.99615627529999995" blue="0.99600595240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More by" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPo-3u-DpN">
-                                <rect key="frame" x="30" y="478" width="56" height="18"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                 <color key="textColor" red="0.99194461109999998" green="0.99615627529999995" blue="0.99600595240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -144,31 +130,44 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="372"/>
                                 <animations/>
                             </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k4D-qq-oa2">
+                                <rect key="frame" x="0.0" y="528" width="600" height="44"/>
+                                <animations/>
+                                <items>
+                                    <barButtonItem systemItem="bookmarks" id="hDs-PB-GLg">
+                                        <color key="tintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </barButtonItem>
+                                    <barButtonItem width="100" style="plain" systemItem="fixedSpace" id="Mgp-pX-6Vh"/>
+                                    <barButtonItem systemItem="compose" id="gNS-iF-2xr">
+                                        <color key="tintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </barButtonItem>
+                                    <barButtonItem width="100" style="plain" systemItem="fixedSpace" id="0Kt-sp-XGn"/>
+                                    <barButtonItem systemItem="action" id="sa0-dO-84j">
+                                        <color key="tintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="flickShare:" destination="moV-M6-9oY" id="m0R-JB-6JP"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="hok-A1-tu5" firstAttribute="top" secondItem="bbr-JS-peM" secondAttribute="bottom" constant="-6" id="3jn-WD-kKg"/>
-                            <constraint firstItem="hCK-5H-Fea" firstAttribute="top" secondItem="hok-A1-tu5" secondAttribute="bottom" constant="80" id="7xT-Jd-X3g"/>
+                            <constraint firstItem="hok-A1-tu5" firstAttribute="top" secondItem="bbr-JS-peM" secondAttribute="bottom" constant="16" id="3jn-WD-kKg"/>
+                            <constraint firstItem="hCK-5H-Fea" firstAttribute="top" secondItem="hok-A1-tu5" secondAttribute="bottom" constant="82" id="7xT-Jd-X3g"/>
                             <constraint firstItem="hok-A1-tu5" firstAttribute="centerX" secondItem="exy-jP-PgS" secondAttribute="centerX" id="8aO-Kb-Hhh"/>
-                            <constraint firstItem="hCK-5H-Fea" firstAttribute="top" secondItem="e1B-hM-X2d" secondAttribute="bottom" constant="20" id="Ko9-uc-6ek"/>
-                            <constraint firstItem="e1B-hM-X2d" firstAttribute="leading" secondItem="exy-jP-PgS" secondAttribute="leadingMargin" constant="10" id="McL-ya-qEf"/>
                             <constraint firstItem="bbr-JS-peM" firstAttribute="top" secondItem="zuD-f4-RNW" secondAttribute="bottom" id="PgI-Yj-2jG"/>
-                            <constraint firstItem="hCK-5H-Fea" firstAttribute="top" secondItem="BRb-Ll-LW6" secondAttribute="bottom" constant="20" id="SpA-cj-lss"/>
-                            <constraint firstItem="e1B-hM-X2d" firstAttribute="top" secondItem="nPo-3u-DpN" secondAttribute="bottom" constant="8" id="SyQ-Rf-6fW"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="BRb-Ll-LW6" secondAttribute="trailing" constant="20" id="ZS7-2C-hfm"/>
-                            <constraint firstItem="e1B-hM-X2d" firstAttribute="top" secondItem="hok-A1-tu5" secondAttribute="bottom" constant="28" id="bER-aE-bdK"/>
+                            <constraint firstItem="nPo-3u-DpN" firstAttribute="centerX" secondItem="hok-A1-tu5" secondAttribute="centerX" id="TlY-SR-rVY"/>
                             <constraint firstItem="bbr-JS-peM" firstAttribute="centerY" secondItem="exy-jP-PgS" secondAttribute="centerY" id="g1g-ff-7LK"/>
                             <constraint firstItem="hCK-5H-Fea" firstAttribute="top" secondItem="bbr-JS-peM" secondAttribute="bottom" constant="120" id="hBV-Hf-44h"/>
                             <constraint firstItem="hok-A1-tu5" firstAttribute="leading" secondItem="exy-jP-PgS" secondAttribute="leadingMargin" constant="32" id="sg8-K3-Gz3"/>
-                            <constraint firstItem="BRb-Ll-LW6" firstAttribute="top" secondItem="hok-A1-tu5" secondAttribute="bottom" constant="28" id="sm2-eP-8X7"/>
-                            <constraint firstItem="nPo-3u-DpN" firstAttribute="leading" secondItem="exy-jP-PgS" secondAttribute="leadingMargin" constant="10" id="vP0-GB-QGk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bbr-JS-peM" secondAttribute="trailing" constant="-20" id="vlB-Bc-7Bd"/>
                             <constraint firstItem="bbr-JS-peM" firstAttribute="leading" secondItem="exy-jP-PgS" secondAttribute="leadingMargin" constant="-20" id="yaj-kt-yW1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hok-A1-tu5" secondAttribute="trailing" constant="32" id="ye6-eE-ZLA"/>
                             <constraint firstItem="bbr-JS-peM" firstAttribute="centerX" secondItem="exy-jP-PgS" secondAttribute="centerX" id="yxJ-wn-4bR"/>
-                            <constraint firstItem="nPo-3u-DpN" firstAttribute="top" secondItem="hok-A1-tu5" secondAttribute="bottom" constant="2" id="zsy-tW-eZj"/>
+                            <constraint firstItem="nPo-3u-DpN" firstAttribute="top" secondItem="hok-A1-tu5" secondAttribute="bottom" constant="10" id="zsy-tW-eZj"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -177,13 +176,7 @@
                         </variation>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="Gpv-rS-jvy">
-                        <barButtonItem key="rightBarButtonItem" title="Share" style="plain" id="sa0-dO-84j">
-                            <connections>
-                                <action selector="flickShare:" destination="moV-M6-9oY" id="m0R-JB-6JP"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Gpv-rS-jvy"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>

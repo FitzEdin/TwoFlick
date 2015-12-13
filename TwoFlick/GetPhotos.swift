@@ -50,8 +50,8 @@ class GetPhotos{
         do {
             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
             
-            let photos = jsonData["photos"] as! NSDictionary
-            let photo = photos["photo"] as! NSArray
+            let photos = jsonData["photos"]! as! NSDictionary
+            let photo = photos["photo"]! as! NSArray
             
             for var first in photo {
                 // grab parameters for URL
