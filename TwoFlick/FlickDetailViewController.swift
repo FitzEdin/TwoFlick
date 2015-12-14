@@ -28,11 +28,23 @@ class FlickDetailViewController: UIViewController {
     
     @IBAction func flickInfo(sender: UIBarButtonItem) {
         let me = UIAlertController(title: "Info", message: "All information about the picture", preferredStyle: .ActionSheet)
+        me.addAction(
+            UIAlertAction(
+                title: "Close",
+                style: .Destructive,
+                handler:nil )
+        )
         self.presentViewController(me, animated: true, completion: nil)
     }
     
     @IBAction func flickComments(sender: UIBarButtonItem) {
         let me = UIAlertController(title: "Comments", message: "These are your comments", preferredStyle: UIAlertControllerStyle.Alert)
+        me.addAction(
+            UIAlertAction(
+                title: "Close",
+                style: .Destructive,
+                handler:nil )
+        )
         self.presentViewController(me, animated: true, completion: nil)
     }
     
