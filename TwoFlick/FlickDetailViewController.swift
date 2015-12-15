@@ -14,6 +14,14 @@ class FlickDetailViewController: UIViewController {
     let size = "z.jpg"
     var item : FlickItem!
     
+    /*additional data to be collected*/
+    var name: String!
+    var flkDescription: String!
+    var dateTaken: String!
+    var views: String!
+    var commentCount: String!
+    
+    
     @IBOutlet weak var flickImageVw: UIImageView!
     @IBOutlet weak var flickLabel: UILabel!
     @IBOutlet weak var flickOwnerLabel: UILabel!
@@ -26,18 +34,18 @@ class FlickDetailViewController: UIViewController {
     }
     
     @IBAction func flickInfo(sender: UIBarButtonItem) {
-        let me = UIAlertController(title: "Info", message: "All information about the picture", preferredStyle: .ActionSheet)
+        let me = UIAlertController(title: "Info", message: "\(views) views, \(commentCount) Comments", preferredStyle: .Alert)
         me.addAction(
             UIAlertAction(
                 title: "Close",
-                style: .Destructive,
+                style: .Default,
                 handler:nil )
         )
         self.presentViewController(me, animated: true, completion: nil)
     }
     
     @IBAction func flickComments(sender: UIBarButtonItem) {
-        let me = UIAlertController(title: "Comments", message: "These are your comments", preferredStyle: UIAlertControllerStyle.Alert)
+        let me = UIAlertController(title: "Comments", message: "These are your comments", preferredStyle: .Alert)
         me.addAction(
             UIAlertAction(
                 title: "Close",
@@ -51,11 +59,13 @@ class FlickDetailViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         self.flickLabel.text = item.title
+        //self.flickDetailPictureName.text = item.title
         
         // add rounding to the image's corners
         flickImageVw.layer.cornerRadius = 3
         flickImageVw.clipsToBounds = true
-        self.flickImageVw.image = item.smImage  
+        flickImageVw.alpha = 0.2
+        flickImageVw.image = item.smImage
         
         loadLgImg()
         getUser()
@@ -63,16 +73,17 @@ class FlickDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         // Swipe left gesture
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: "loadImage")
-        swipeRight.direction = .Right
-        self.view.addGestureRecognizer(swipeRight)
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: "loadMap")
+        swipeLeft.direction = .Left
+        self.view.addGestureRecognizer(swipeLeft)
     }
     
     //
-    func loadImage(){
-        print("Swipe to the right detected")
+    func loadMap(){
+        self.performSegueWithIdentifier("mapSegue", sender: self)
     }
     
+    /*Load a larger image*/
     //function for loading the large image
     private func loadLgImg(){
         
@@ -90,6 +101,7 @@ class FlickDetailViewController: UIViewController {
         task.resume()
     }
     
+    // unwrap the network data for the larger image
     private func gotLgImage(data: NSData?){
         guard data != nil else {
             print("no data")
@@ -97,18 +109,28 @@ class FlickDetailViewController: UIViewController {
         }
         
         //get the larger image
-        let image = UIImage(data: data!)
-        
-        dispatch_async(
-            dispatch_get_main_queue(),
-            {   self.flickImageVw.image = image }
-        )
+        if let image = UIImage(data: data!) {
+            dispatch_async(
+                dispatch_get_main_queue(),
+                {   UIView.animateWithDuration(
+                        1.6,
+                        animations: {
+                            self.flickImageVw.image = image
+                            self.flickImageVw.alpha = 1.0
+                        }
+                    )
+                }
+            )
+        }
     }
     
     
+    
+    /* Load additional info about the flick*/
+    // query the network for further infor on the photo
     private func getUser(){
         let apiKey = "018c00fa2d9b15eea951e9a9efa8137d"
-        let url = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.people.getInfo&api_key=\(apiKey)&user_id=\(item.owner)&format=json&nojsoncallback=1")!
+        let url = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=\(apiKey)&photo_id=\(item.id)&format=json&nojsoncallback=1")!
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(
             url,
@@ -122,8 +144,9 @@ class FlickDetailViewController: UIViewController {
         task.resume()
     }
     
+    //unwrap the network data for further info on the photo
     private func gotOwner(data: NSData?){
-        var name: String!
+        
         guard data != nil else {
             print("no data")
             return
@@ -132,9 +155,24 @@ class FlickDetailViewController: UIViewController {
         do {
             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
             
-            let photos = jsonData["person"] as! NSDictionary
-            let photo = photos["username"] as! NSDictionary
-            name = photo["_content"] as! String
+            let photo = jsonData["photo"] as! NSDictionary
+            
+            // get .owner.username
+            let owner = photo["owner"] as! NSDictionary
+            name = owner["username"] as! String
+            
+            //get .description._content
+            var me = photo["description"] as! NSDictionary
+            flkDescription = me["_content"] as! String
+            //get .comments._content
+            me = photo["comments"] as! NSDictionary
+            commentCount = me["_content"] as! String
+            //get .dates.taken
+            me = photo["dates"] as! NSDictionary
+            dateTaken = me["taken"] as! String
+            //get .views
+            views = photo["views"] as! String
+            
         } catch let error {
             print("error \(error)")
         }
@@ -142,7 +180,8 @@ class FlickDetailViewController: UIViewController {
         dispatch_async(
             dispatch_get_main_queue(),
             {   //self.navigationItem.title = name
-                self.flickOwnerLabel.text = /*"See more by \n*/"By \(name)"
+                self.flickOwnerLabel.text = /*"See more by \n*/"By \(self.name)"
+                //self.flickDetailOwnerLabel.text = "\(self.name)"
             }
         )
     }

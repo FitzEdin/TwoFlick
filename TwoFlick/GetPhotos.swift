@@ -89,7 +89,7 @@ class GetPhotos{
     }
     
     // perform a search with a particular term
-    public func searchFor(searchTerm: String){
+    internal func searchFor(searchTerm: String){
         // generate a url using the search term
         let str = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&text=\(searchTerm)&format=json&nojsoncallback=1"
         let url = NSURL(string: str)!
@@ -109,7 +109,7 @@ class GetPhotos{
     }
     
     // grab the most recent set of pics..
-    public func grabRecentPhotos(page : Int) {
+    internal func grabRecentPhotos(page : Int) {
         // generate a url
         (self.page!)++
         let url = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=\(apiKey)&per_page=\(count)&page=\(self.page)&format=json&nojsoncallback=1")!

@@ -64,7 +64,7 @@
                                 </variation>
                                 <connections>
                                     <outlet property="flickImage" destination="iay-ZZ-W2Y" id="ih3-ga-7bK"/>
-                                    <segue destination="moV-M6-9oY" kind="show" id="FOj-7I-1L0"/>
+                                    <segue destination="moV-M6-9oY" kind="show" identifier="flickDetailSegue" animates="NO" id="FOj-7I-1L0"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -114,7 +114,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Owner" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPo-3u-DpN">
-                                <rect key="frame" x="80" y="478" width="440.5" height="15"/>
+                                <rect key="frame" x="80" y="478" width="441" height="15"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                 <color key="textColor" red="0.99194461109999998" green="0.99615627529999995" blue="0.99600595240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -124,7 +124,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="372"/>
                                 <animations/>
                             </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k4D-qq-oa2">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4D-qq-oa2">
                                 <rect key="frame" x="0.0" y="528" width="600" height="44"/>
                                 <animations/>
                                 <items>
@@ -150,17 +150,36 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0A-We-KR9">
+                                <rect key="frame" x="0.0" y="64" width="600" height="464"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="QSI-8R-N3Y">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="464"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <animations/>
+                                </view>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="464" id="dsn-qD-vox"/>
+                                    <constraint firstAttribute="width" constant="600" id="yDZ-Yj-Nzt"/>
+                                </constraints>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="H0A-We-KR9" firstAttribute="leading" secondItem="bbr-JS-peM" secondAttribute="leading" id="0Vg-fe-Qfc"/>
                             <constraint firstItem="hok-A1-tu5" firstAttribute="top" secondItem="bbr-JS-peM" secondAttribute="bottom" constant="16" id="3jn-WD-kKg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nPo-3u-DpN" secondAttribute="trailing" constant="60" id="3x6-BJ-ZDN"/>
+                            <constraint firstItem="H0A-We-KR9" firstAttribute="leading" secondItem="k4D-qq-oa2" secondAttribute="leading" id="7Zd-mJ-Kjq"/>
                             <constraint firstItem="hCK-5H-Fea" firstAttribute="top" secondItem="hok-A1-tu5" secondAttribute="bottom" constant="82" id="7xT-Jd-X3g"/>
                             <constraint firstItem="hok-A1-tu5" firstAttribute="centerX" secondItem="exy-jP-PgS" secondAttribute="centerX" id="8aO-Kb-Hhh"/>
+                            <constraint firstItem="H0A-We-KR9" firstAttribute="trailing" secondItem="k4D-qq-oa2" secondAttribute="trailing" id="Bo1-7D-LiN"/>
+                            <constraint firstItem="H0A-We-KR9" firstAttribute="top" secondItem="bbr-JS-peM" secondAttribute="top" id="HdM-s5-0Wa"/>
                             <constraint firstItem="bbr-JS-peM" firstAttribute="top" secondItem="zuD-f4-RNW" secondAttribute="bottom" id="PgI-Yj-2jG"/>
                             <constraint firstItem="nPo-3u-DpN" firstAttribute="centerX" secondItem="hok-A1-tu5" secondAttribute="centerX" id="TlY-SR-rVY"/>
+                            <constraint firstItem="H0A-We-KR9" firstAttribute="bottom" secondItem="k4D-qq-oa2" secondAttribute="top" id="fs0-2w-OSB"/>
                             <constraint firstItem="bbr-JS-peM" firstAttribute="centerY" secondItem="exy-jP-PgS" secondAttribute="centerY" id="g1g-ff-7LK"/>
                             <constraint firstItem="hCK-5H-Fea" firstAttribute="top" secondItem="bbr-JS-peM" secondAttribute="bottom" constant="120" id="hBV-Hf-44h"/>
                             <constraint firstItem="hok-A1-tu5" firstAttribute="leading" secondItem="exy-jP-PgS" secondAttribute="leadingMargin" constant="32" id="sg8-K3-Gz3"/>
@@ -186,11 +205,41 @@
                         <outlet property="flickImageVw" destination="bbr-JS-peM" id="9zs-hE-jSd"/>
                         <outlet property="flickLabel" destination="hok-A1-tu5" id="Yrn-Kv-gzc"/>
                         <outlet property="flickOwnerLabel" destination="nPo-3u-DpN" id="YFU-c0-x2F"/>
+                        <segue destination="WVI-6A-NyD" kind="show" identifier="mapSegue" id="I9S-HB-Fon"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E91-om-aP4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1238" y="-395"/>
+        </scene>
+        <!--Flick Map View Controller-->
+        <scene sceneID="Wiq-Xy-Tz4">
+            <objects>
+                <viewController id="WVI-6A-NyD" customClass="FlickMapViewController" customModule="TwoFlick" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cRe-IW-OqV"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Il-FI-cNF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eca-SS-XB7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="0O8-E2-Kg3">
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                                <animations/>
+                            </mapView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="flickMapView" destination="0O8-E2-Kg3" id="WJ2-G3-2l3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qgJ-Qr-6s1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1941" y="-395"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hKA-lW-g6E">
