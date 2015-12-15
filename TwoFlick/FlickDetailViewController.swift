@@ -11,7 +11,6 @@ import UIKit
 class FlickDetailViewController: UIViewController {
     
     var lgImg : UIImage!
-    var url : String!
     let size = "z.jpg"
     var item : FlickItem!
     
@@ -52,21 +51,32 @@ class FlickDetailViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         self.flickLabel.text = item.title
-        self.url = item.baseURL
         
         // add rounding to the image's corners
         flickImageVw.layer.cornerRadius = 3
-        flickImageVw.clipsToBounds = true       
+        flickImageVw.clipsToBounds = true
         self.flickImageVw.image = item.smImage  
         
         loadLgImg()
         getUser()
     }
     
+    override func viewDidLoad() {
+        // Swipe left gesture
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: "loadImage")
+        swipeRight.direction = .Right
+        self.view.addGestureRecognizer(swipeRight)
+    }
+    
+    //
+    func loadImage(){
+        print("Swipe to the right detected")
+    }
+    
     //function for loading the large image
     private func loadLgImg(){
         
-        let imageURL = url + size
+        let imageURL = item.baseURL + size
         let session = NSURLSession.sharedSession()
         
         let task = session.dataTaskWithURL(

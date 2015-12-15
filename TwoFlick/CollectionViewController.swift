@@ -11,6 +11,7 @@ import UIKit
 // manage the (initial) collection view
 class CollectionViewController: UICollectionViewController {
     
+    var refreshControl : UIRefreshControl!
     private let reuseIdentifier = "Cell"
     internal var flickList = [FlickItem]()
     var getFotos = GetPhotos(apiKey: "018c00fa2d9b15eea951e9a9efa8137d")
@@ -20,6 +21,9 @@ class CollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refreshFlicks", forControlEvents: .ValueChanged)
+        self.collectionView?.addSubview(refreshControl)
         getFotos.collectionViewCtrl = self
         
         //animate the activity indicator
@@ -78,14 +82,16 @@ class CollectionViewController: UICollectionViewController {
         }
     }
     
-    // refresh the feed on button click
-    @IBAction func refreshFlicks(sender: AnyObject) {
+    // handles the pull-down to refresh action
+    func refreshFlicks() {
+        // the refresh control is spinning
         refreshSelf()
         getFotos.grabRecentPhotos(1)
+        refreshControl.endRefreshing()
     }
+        
     
     private func refreshSelf(){
-        lgActivityIndicator.startAnimating()// spin the activity indicator
         flickList.removeAll()               // empty the collection view
         self.collectionView?.reloadData()   // and reset the scroll position
     }
@@ -99,6 +105,7 @@ extension CollectionViewController : UITextFieldDelegate {
         }
         if let tx = textField.text{
             let newTx = tx.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())
+            lgActivityIndicator.startAnimating()// spin the activity indicator
             refreshSelf()
             getFotos.searchFor(newTx!)
         }
