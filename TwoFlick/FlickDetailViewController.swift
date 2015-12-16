@@ -10,7 +10,6 @@ import UIKit
 
 class FlickDetailViewController: UIViewController {
     
-    var lgImg : UIImage!
     let size = "z.jpg"
     var item : FlickItem!
     
@@ -27,7 +26,7 @@ class FlickDetailViewController: UIViewController {
     }
     
     @IBAction func flickInfo(sender: UIBarButtonItem) {
-        let me = UIAlertController(title: "\(item.title)", message: "By \(item.ownerName) \n \(item.views) views \n \(item.commentCount) comments \n adding \n random \n lines \n to this \n thing", preferredStyle: .Alert)
+        let me = UIAlertController(title: "\(item.title)", message: "By \(item.ownerName) \n \(item.views) views \n \(item.commentCount) comments", preferredStyle: .Alert)
         me.addAction(
             UIAlertAction(
                 title: "Close",
@@ -38,7 +37,7 @@ class FlickDetailViewController: UIViewController {
     }
     
     @IBAction func flickComments(sender: UIBarButtonItem) {
-        let me = UIAlertController(title: "Comments", message: "These are your comments", preferredStyle: .Alert)
+        let me = UIAlertController(title: "Tags", message: "These are your tags", preferredStyle: .Alert)
         me.addAction(
             UIAlertAction(
                 title: "Close",
@@ -67,26 +66,14 @@ class FlickDetailViewController: UIViewController {
         super.viewDidLoad()
         
         // Swipe left gesture
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: "loadMa")
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: "loadMap")
         swipeLeft.direction = .Left
         self.view.addGestureRecognizer(swipeLeft)
-        
-        
-        // Swipe down gesture
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: "loadMap")
-        swipeDown.direction = .Down
-        self.view.addGestureRecognizer(swipeDown)
     }
     
     //
     func loadMap(){
         self.performSegueWithIdentifier("mapSegue", sender: self)
-    }
-    
-    //
-    func loadMa(){
-        
-        self.performSegueWithIdentifier("downSegue", sender: self)
     }
     
     /*Load a larger image*/
@@ -186,21 +173,8 @@ class FlickDetailViewController: UIViewController {
         
         dispatch_async(
             dispatch_get_main_queue(),
-            {   //self.navigationItem.title = name
-                self.flickOwnerLabel.text = /*"See more by \n*/"By \(self.item.ownerName)"
-                //self.flickDetailOwnerLabel.text = "\(self.name)"
+            {   self.flickOwnerLabel.text = "By \(self.item.ownerName)"
             }
         )
     }
-
-    
-/*
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    }
-    
-*/
 }

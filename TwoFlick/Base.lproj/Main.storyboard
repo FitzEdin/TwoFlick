@@ -174,6 +174,8 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="g1g-ff-7LK"/>
+                                <exclude reference="ye6-eE-ZLA"/>
+                                <exclude reference="3x6-BJ-ZDN"/>
                             </mask>
                         </variation>
                     </view>
@@ -187,7 +189,6 @@
                         <outlet property="flickLabel" destination="hok-A1-tu5" id="Yrn-Kv-gzc"/>
                         <outlet property="flickOwnerLabel" destination="nPo-3u-DpN" id="YFU-c0-x2F"/>
                         <segue destination="WVI-6A-NyD" kind="show" identifier="mapSegue" id="I9S-HB-Fon"/>
-                        <segue destination="ViV-ch-wsy" kind="presentation" identifier="downSegue" modalTransitionStyle="flipHorizontal" id="kCx-Mp-PZm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E91-om-aP4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -242,35 +243,9 @@
             </objects>
             <point key="canvasLocation" x="-304" y="-395"/>
         </scene>
-        <!--Info View Controller-->
-        <scene sceneID="FwM-QS-24P">
-            <objects>
-                <viewController id="ViV-ch-wsy" customClass="InfoViewController" customModule="TwoFlick" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="NYg-Sf-OSz"/>
-                        <viewControllerLayoutGuide type="bottom" id="yXi-s6-Upi"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="4xJ-uV-m6D">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <segue destination="moV-M6-9oY" kind="presentation" identifier="upSegue" modalTransitionStyle="flipHorizontal" id="pX4-Aw-Hff"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="baU-vA-rMP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1238" y="569"/>
-        </scene>
     </scenes>
     <resources>
         <image name="comments" width="25" height="25"/>
         <image name="info" width="25" height="25"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="pX4-Aw-Hff"/>
-    </inferredMetricsTieBreakers>
 </document>
