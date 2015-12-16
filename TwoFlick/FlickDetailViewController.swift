@@ -28,7 +28,7 @@ class FlickDetailViewController: UIViewController {
     }
     
     @IBAction func flickInfo(sender: UIBarButtonItem) {
-        let me = UIAlertController(title: "\(item.title)", message: "By \(item.ownerName) \n \(item.views) views \n \(item.commentCount) comments", preferredStyle: .Alert)
+        let me = UIAlertController(title: "\(item.title)", message: "By \(item.ownerName) \n \(item.views) views \n \(item.commentCount) comments \n taken \(item.dateTaken)", preferredStyle: .Alert)
         me.addAction(
             UIAlertAction(
                 title: "Close",

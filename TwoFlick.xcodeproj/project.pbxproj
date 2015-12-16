@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF2A56CB1C21974B002BE3E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2CDE7791C03EB4C002E600D /* Assets.xcassets */; };
 		CF33A87A1C20B75700EEACEC /* FlickMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF33A8791C20B75700EEACEC /* FlickMapViewController.swift */; };
 		F2B312D31C0D363F00ECBB50 /* FlickDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B312D21C0D363F00ECBB50 /* FlickDetailViewController.swift */; };
 		F2C9DBCF1C0B57D200A716B0 /* GetPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C9DBCE1C0B57D200A716B0 /* GetPhotos.swift */; };
 		F2CDE7731C03EB4C002E600D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDE7721C03EB4C002E600D /* AppDelegate.swift */; };
 		F2CDE7781C03EB4C002E600D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2CDE7761C03EB4C002E600D /* Main.storyboard */; };
-		F2CDE77A1C03EB4C002E600D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2CDE7791C03EB4C002E600D /* Assets.xcassets */; };
 		F2CDE77D1C03EB4C002E600D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2CDE77B1C03EB4C002E600D /* LaunchScreen.storyboard */; };
 		F2CDE7851C03EC84002E600D /* FlickCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDE7841C03EC84002E600D /* FlickCell.swift */; };
 		F2CDE7871C03ECD6002E600D /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDE7861C03ECD6002E600D /* CollectionViewController.swift */; };
@@ -139,7 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2CDE77D1C03EB4C002E600D /* LaunchScreen.storyboard in Resources */,
-				F2CDE77A1C03EB4C002E600D /* Assets.xcassets in Resources */,
+				CF2A56CB1C21974B002BE3E3 /* Assets.xcassets in Resources */,
 				F2CDE7781C03EB4C002E600D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
