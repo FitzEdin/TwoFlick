@@ -11,8 +11,8 @@ import MapKit
 
 class FlickMapViewController: UIViewController {
     
-    var lon = 1.063
-    var lat = 51.295
+    var lat = 17.353
+    var lon = -62.735
     
 
     @IBOutlet weak var flickMapView: MKMapView!

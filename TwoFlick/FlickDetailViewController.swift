@@ -11,6 +11,8 @@ import UIKit
 class FlickDetailViewController: UIViewController {
     
     let size = "z.jpg"
+    let apiKey = "018c00fa2d9b15eea951e9a9efa8137d"
+    var noLocation = true
     var item : FlickItem!
     
     
@@ -37,11 +39,11 @@ class FlickDetailViewController: UIViewController {
     }
     
     @IBAction func flickComments(sender: UIBarButtonItem) {
-        let me = UIAlertController(title: "Tags", message: "These are your tags", preferredStyle: .Alert)
+        let me = UIAlertController(title: "Tags", message: "Lat: \(item.lat) Lon: \(item.lon)", preferredStyle: .Alert)
         me.addAction(
             UIAlertAction(
                 title: "Close",
-                style: .Destructive,
+                style: .Default,
                 handler:nil )
         )
         self.presentViewController(me, animated: true, completion: nil)
@@ -59,7 +61,8 @@ class FlickDetailViewController: UIViewController {
         flickImageVw.image = item.smImage
         
         loadLgImg()
-        getUser()
+        getInfo()
+        getLoc()
     }
     
     override func viewDidLoad() {
@@ -73,8 +76,23 @@ class FlickDetailViewController: UIViewController {
     
     //
     func loadMap(){
-        self.performSegueWithIdentifier("mapSegue", sender: self)
+        if noLocation {
+            let me = UIAlertController(title: "Location Unknown", message: "No location information is available for this photo", preferredStyle: .ActionSheet )
+            me.addAction(
+                UIAlertAction(
+                    title: "Close",
+                    style: .Default,
+                    handler:nil )
+            )
+            self.presentViewController(me, animated: true, completion: nil)
+        }else{
+            self.performSegueWithIdentifier("mapSegue", sender: self)
+        }
     }
+    
+    
+    
+    // MARK: Network Querying
     
     /*Load a larger image*/
     //function for loading the large image
@@ -122,8 +140,7 @@ class FlickDetailViewController: UIViewController {
     
     /* Load additional info about the flick*/
     // query the network for further infor on the photo
-    private func getUser(){
-        let apiKey = "018c00fa2d9b15eea951e9a9efa8137d"
+    private func getInfo(){
         let url = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=\(apiKey)&photo_id=\(item.id)&format=json&nojsoncallback=1")!
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(
@@ -131,7 +148,7 @@ class FlickDetailViewController: UIViewController {
             completionHandler: {
                 data,
                 response,
-                error in self.gotOwner(data!)
+                error in self.gotInfo(data!)
             }
         )
         
@@ -139,7 +156,7 @@ class FlickDetailViewController: UIViewController {
     }
     
     //unwrap the network data for further info on the photo
-    private func gotOwner(data: NSData?){
+    private func gotInfo(data: NSData?){
         
         guard data != nil else {
             print("no data")
@@ -176,5 +193,70 @@ class FlickDetailViewController: UIViewController {
             {   self.flickOwnerLabel.text = "By \(self.item.ownerName)"
             }
         )
+    }
+    
+    
+    
+    /* Load additional info about the flick*/
+    // query the network for further infor on the photo
+    private func getLoc(){
+        print(item.id)
+        let url = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.geo.getLocation&api_key=\(apiKey)&photo_id=\(item.id)&format=json&nojsoncallback=1")!
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithURL(
+            url,
+            completionHandler: {
+                data,
+                response,
+                error in self.gotLoc(data!)
+            }
+        )
+        
+        task.resume()
+    }
+    
+    //unwrap the network data for further info on the photo
+    private func gotLoc(data: NSData?){
+        guard data != nil else {
+            print("no data")
+            return
+        }
+        
+        do {
+            let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
+            
+            
+            let stat = jsonData["stat"] as! String
+            print(stat)
+            if stat == "fail" {
+                noLocation = true
+                return
+            }else{
+                noLocation = false
+                let photo = jsonData["photo"] as! NSDictionary
+                
+                // get .location.latitude and .longitude
+                let location = photo["location"] as! NSDictionary
+                item.lat = location["latitude"] as! String
+                item.lon = location["longitude"] as! String
+            }
+        } catch let error {
+            print("error \(error)")
+        }
+        
+        dispatch_async(
+            dispatch_get_main_queue(),
+            {   self.flickOwnerLabel.text = "By \(self.item.ownerName)"
+            }
+        )
+    }
+    
+    
+    // MARK: Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let dest = segue.destinationViewController as! FlickMapViewController
+        dest.lat = Double(item.lat)!
+        dest.lon = Double(item.lon)!
     }
 }

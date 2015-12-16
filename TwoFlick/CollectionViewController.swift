@@ -39,14 +39,6 @@ class CollectionViewController: UICollectionViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {        
         let selection = self.collectionView?.indexPathsForSelectedItems()!
-        
-        UIView.animateWithDuration(
-            0.5,
-            animations: {
-                self.collectionView?.cellForItemAtIndexPath(selection![0])?.layer.cornerRadius = 10
-            }
-        )
-        
         let item = flickList[selection![0].row]
         let dest = segue.destinationViewController as! FlickDetailViewController        
         dest.item = item

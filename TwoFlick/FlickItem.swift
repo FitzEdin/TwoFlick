@@ -27,6 +27,9 @@ class FlickItem {
     var commentCount: String!
     var flkDescription: String!
     
+    var lat: String!
+    var lon: String!
+    
     
     init(title: String, smImg: UIImage, baseURL: String, farm: Int, server: String , secret: String, id: String, owner: String) {
         self.title = title
