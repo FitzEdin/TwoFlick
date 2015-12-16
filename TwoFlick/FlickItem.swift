@@ -19,6 +19,15 @@ class FlickItem {
     var owner: String
     var smImage: UIImage
     
+    var lgImage: UIImage!
+    
+    var ownerName: String!
+    var views: String!
+    var dateTaken: String!
+    var commentCount: String!
+    var flkDescription: String!
+    
+    
     init(title: String, smImg: UIImage, baseURL: String, farm: Int, server: String , secret: String, id: String, owner: String) {
         self.title = title
         self.smImage = smImg

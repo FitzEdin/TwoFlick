@@ -14,27 +14,20 @@ class FlickDetailViewController: UIViewController {
     let size = "z.jpg"
     var item : FlickItem!
     
-    /*additional data to be collected*/
-    var name: String!
-    var flkDescription: String!
-    var dateTaken: String!
-    var views: String!
-    var commentCount: String!
-    
     
     @IBOutlet weak var flickImageVw: UIImageView!
     @IBOutlet weak var flickLabel: UILabel!
     @IBOutlet weak var flickOwnerLabel: UILabel!
     @IBAction func flickShare(sender: AnyObject) {
         let message = item.title
-        let image = item.smImage
+        let image = item.lgImage
         
         let sheet = UIActivityViewController(activityItems: [message, image], applicationActivities: nil)
         self.presentViewController(sheet, animated: true, completion: nil)
     }
     
     @IBAction func flickInfo(sender: UIBarButtonItem) {
-        let me = UIAlertController(title: "Info", message: "\(views) views, \(commentCount) Comments", preferredStyle: .Alert)
+        let me = UIAlertController(title: "\(item.title)", message: "By \(item.ownerName) \n \(item.views) views \n \(item.commentCount) comments \n adding \n random \n lines \n to this \n thing", preferredStyle: .Alert)
         me.addAction(
             UIAlertAction(
                 title: "Close",
@@ -59,7 +52,6 @@ class FlickDetailViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         self.flickLabel.text = item.title
-        //self.flickDetailPictureName.text = item.title
         
         // add rounding to the image's corners
         flickImageVw.layer.cornerRadius = 3
@@ -72,15 +64,29 @@ class FlickDetailViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         // Swipe left gesture
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: "loadMap")
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: "loadMa")
         swipeLeft.direction = .Left
         self.view.addGestureRecognizer(swipeLeft)
+        
+        
+        // Swipe down gesture
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: "loadMap")
+        swipeDown.direction = .Down
+        self.view.addGestureRecognizer(swipeDown)
     }
     
     //
     func loadMap(){
         self.performSegueWithIdentifier("mapSegue", sender: self)
+    }
+    
+    //
+    func loadMa(){
+        
+        self.performSegueWithIdentifier("downSegue", sender: self)
     }
     
     /*Load a larger image*/
@@ -115,6 +121,7 @@ class FlickDetailViewController: UIViewController {
                 {   UIView.animateWithDuration(
                         1.6,
                         animations: {
+                            self.item.lgImage = image
                             self.flickImageVw.image = image
                             self.flickImageVw.alpha = 1.0
                         }
@@ -159,19 +166,19 @@ class FlickDetailViewController: UIViewController {
             
             // get .owner.username
             let owner = photo["owner"] as! NSDictionary
-            name = owner["username"] as! String
+            item.ownerName = owner["username"] as! String
             
             //get .description._content
             var me = photo["description"] as! NSDictionary
-            flkDescription = me["_content"] as! String
+            item.flkDescription = me["_content"] as! String
             //get .comments._content
             me = photo["comments"] as! NSDictionary
-            commentCount = me["_content"] as! String
+            item.commentCount = me["_content"] as! String
             //get .dates.taken
             me = photo["dates"] as! NSDictionary
-            dateTaken = me["taken"] as! String
+            item.dateTaken = me["taken"] as! String
             //get .views
-            views = photo["views"] as! String
+            item.views = photo["views"] as! String
             
         } catch let error {
             print("error \(error)")
@@ -180,22 +187,20 @@ class FlickDetailViewController: UIViewController {
         dispatch_async(
             dispatch_get_main_queue(),
             {   //self.navigationItem.title = name
-                self.flickOwnerLabel.text = /*"See more by \n*/"By \(self.name)"
+                self.flickOwnerLabel.text = /*"See more by \n*/"By \(self.item.ownerName)"
                 //self.flickDetailOwnerLabel.text = "\(self.name)"
             }
         )
     }
 
     
-
-    /*
+/*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
-
+    
+*/
 }
