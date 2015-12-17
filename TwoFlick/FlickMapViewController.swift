@@ -13,7 +13,6 @@ class FlickMapViewController: UIViewController {
     
     var lat = 17.353
     var lon = -62.735
-    
 
     @IBOutlet weak var flickMapView: MKMapView!
     override func viewDidLoad() {
@@ -24,7 +23,6 @@ class FlickMapViewController: UIViewController {
         let region = MKCoordinateRegionMake(location, span)
         
         flickMapView.setRegion(region, animated: true)
-
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -34,18 +32,5 @@ class FlickMapViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

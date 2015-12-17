@@ -25,7 +25,6 @@ public class Network {
             return false
         }
         
-        // perform binary addition on values
         let isReachable = flags == .Reachable
         let needsConnection = flags == .ConnectionRequired
         

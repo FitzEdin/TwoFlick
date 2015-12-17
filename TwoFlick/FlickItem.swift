@@ -10,6 +10,7 @@ import UIKit
 
 // the data structure for each item
 class FlickItem {
+    // initial info
     var baseURL: String
     var farm: Int
     var server: String
@@ -19,6 +20,7 @@ class FlickItem {
     var owner: String
     var smImage: UIImage
     
+    // get this in detail controller
     var lgImage: UIImage!
     
     var ownerName: String!

@@ -139,11 +139,10 @@ class CollectionViewController: UICollectionViewController {
             return false
         }
     }
-    
 }
 
 
-// handle 
+// handle input from search bar
 extension CollectionViewController : UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if !networkIsUp() { return false    }

@@ -79,12 +79,11 @@ class FlickDetailViewController: UIViewController {
         swipeLeft.direction = .Left
         self.view.addGestureRecognizer(swipeLeft)
         
+        // grab the info on the flick
         loadLgImg()
         getInfo()
         getLoc()
         getComments()
-        
-        //navigationController?.setToolbarHidden(false, animated: false)
     }
     
     //
@@ -93,7 +92,7 @@ class FlickDetailViewController: UIViewController {
             let me = UIAlertController(title: "Location Unknown", message: "No location information is available for this photo", preferredStyle: .ActionSheet )
             me.addAction(
                 UIAlertAction(
-                    title: "Close",
+                    title: "OK",
                     style: .Default,
                     handler:nil )
             )
@@ -152,7 +151,7 @@ class FlickDetailViewController: UIViewController {
     
     
     /* Load additional info about the flick*/
-    // query the network for further infor on the photo
+    // query the network for further info on the photo
     private func getInfo(){
         let url = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=\(apiKey)&photo_id=\(item.id)&format=json&nojsoncallback=1")!
         let session = NSURLSession.sharedSession()
@@ -209,7 +208,7 @@ class FlickDetailViewController: UIViewController {
     
     
     /* Load additional info about the flick*/
-    // query the network for further infor on the photo
+    // query the network for the location
     private func getLoc(){
         print(item.id)
         let url = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.geo.getLocation&api_key=\(apiKey)&photo_id=\(item.id)&format=json&nojsoncallback=1")!
@@ -296,14 +295,14 @@ class FlickDetailViewController: UIViewController {
         }
     }
     
-    // perform a search with a particular term
+    // get the comments
     internal func getComments(){
         commentList = [Comment]()
-        // generate a url using the search term
+        // url for
         let str = "https://api.flickr.com/services/rest/?method=flickr.photos.comments.getList&api_key=\(apiKey)&photo_id=\(item.id)&format=json&nojsoncallback=1"
         let url = NSURL(string: str)!
         
-        // perform the search
+        // jump on the network
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(
             url,
@@ -313,7 +312,6 @@ class FlickDetailViewController: UIViewController {
                 error in self.gotComments(data!)
             }
         )
-        
         task.resume()
     }
     
@@ -325,7 +323,6 @@ class FlickDetailViewController: UIViewController {
             let dest = segue.destinationViewController as! FlickMapViewController
             dest.lat = Double(item.lat)!
             dest.lon = Double(item.lon)!
-            
         } else { //segue to list of comments
             let dest = segue.destinationViewController as! CommentListController
             dest.list = commentList
