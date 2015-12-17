@@ -267,6 +267,8 @@ class FlickDetailViewController: UIViewController {
             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
             
             let comments = jsonData["comments"]! as! NSDictionary
+            
+            // check that there are comments
             if comments.count > 1 {
                 noComment = false
 
@@ -291,7 +293,7 @@ class FlickDetailViewController: UIViewController {
     internal func getComments(){
         commentList = [Comment]()
         // generate a url using the search term
-        let str = "https://api.flickr.com/services/rest/?method=flickr.photos.comments.getList&api_key=\(apiKey)&photo_id=\(item.id)&format=json&nojsoncallback=1"
+        let str = "https://api.flickr.com/services/rest/?method=flickr.photos.comments.getList&api_key=\(apiKey)&photo_id=22889510460&format=json&nojsoncallback=1"
         let url = NSURL(string: str)!
         
         // perform the search
