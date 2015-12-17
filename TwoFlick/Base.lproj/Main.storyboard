@@ -87,9 +87,10 @@
                             </connections>
                         </textField>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="lgActivityIndicator" destination="50J-fx-W47" id="fRx-UT-ddI"/>
-                        <segue destination="zDq-sk-aiM" kind="presentation" identifier="noNetwork" id="Qwh-A4-sFR"/>
+                        <segue destination="zDq-sk-aiM" kind="presentation" identifier="noNetworkSegue" id="Qwh-A4-sFR"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="awe-9D-dBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -187,69 +188,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fligg" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hok-A1-tu5">
-                                <rect key="frame" x="52" y="452" width="496" height="22"/>
+                                <rect key="frame" x="52" y="496" width="496" height="20"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.092296770103100181" green="0.11482032219704469" blue="0.1242788461538461" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Owner" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPo-3u-DpN">
-                                <rect key="frame" x="80" y="478" width="441" height="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Owner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPo-3u-DpN">
+                                <rect key="frame" x="80" y="520" width="441" height="26"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                 <color key="textColor" red="0.99194461109999998" green="0.99615627529999995" blue="0.99600595240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bbr-JS-peM">
-                                <rect key="frame" x="0.0" y="64" width="600" height="372"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="412"/>
                                 <animations/>
                             </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k4D-qq-oa2">
-                                <rect key="frame" x="0.0" y="528" width="600" height="44"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <items>
-                                    <barButtonItem image="comments" id="hDs-PB-GLg">
-                                        <color key="tintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <action selector="flickComments:" destination="moV-M6-9oY" id="6JI-78-0Ee"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem width="100" style="plain" systemItem="fixedSpace" id="Mgp-pX-6Vh"/>
-                                    <barButtonItem systemItem="action" id="sa0-dO-84j">
-                                        <color key="tintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <action selector="flickShare:" destination="moV-M6-9oY" id="m0R-JB-6JP"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem width="100" style="plain" systemItem="fixedSpace" id="0Kt-sp-XGn"/>
-                                    <barButtonItem image="info" id="gNS-iF-2xr">
-                                        <color key="tintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <action selector="flickInfo:" destination="moV-M6-9oY" id="Glx-8b-4lH"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </toolbar>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="hok-A1-tu5" firstAttribute="top" secondItem="bbr-JS-peM" secondAttribute="bottom" constant="16" id="3jn-WD-kKg"/>
+                            <constraint firstItem="hok-A1-tu5" firstAttribute="top" secondItem="bbr-JS-peM" secondAttribute="bottom" constant="20" id="3jn-WD-kKg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nPo-3u-DpN" secondAttribute="trailing" constant="60" id="3x6-BJ-ZDN"/>
-                            <constraint firstItem="hCK-5H-Fea" firstAttribute="top" secondItem="hok-A1-tu5" secondAttribute="bottom" constant="82" id="7xT-Jd-X3g"/>
+                            <constraint firstItem="hCK-5H-Fea" firstAttribute="top" secondItem="hok-A1-tu5" secondAttribute="bottom" constant="40" id="7xT-Jd-X3g"/>
                             <constraint firstItem="hok-A1-tu5" firstAttribute="centerX" secondItem="exy-jP-PgS" secondAttribute="centerX" id="8aO-Kb-Hhh"/>
                             <constraint firstItem="bbr-JS-peM" firstAttribute="top" secondItem="zuD-f4-RNW" secondAttribute="bottom" id="PgI-Yj-2jG"/>
                             <constraint firstItem="nPo-3u-DpN" firstAttribute="centerX" secondItem="hok-A1-tu5" secondAttribute="centerX" id="TlY-SR-rVY"/>
                             <constraint firstItem="bbr-JS-peM" firstAttribute="centerY" secondItem="exy-jP-PgS" secondAttribute="centerY" id="g1g-ff-7LK"/>
-                            <constraint firstItem="hCK-5H-Fea" firstAttribute="top" secondItem="bbr-JS-peM" secondAttribute="bottom" constant="120" id="hBV-Hf-44h"/>
+                            <constraint firstItem="hCK-5H-Fea" firstAttribute="top" secondItem="bbr-JS-peM" secondAttribute="bottom" constant="80" id="hBV-Hf-44h"/>
                             <constraint firstItem="hok-A1-tu5" firstAttribute="leading" secondItem="exy-jP-PgS" secondAttribute="leadingMargin" constant="32" id="sg8-K3-Gz3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bbr-JS-peM" secondAttribute="trailing" constant="-20" id="vlB-Bc-7Bd"/>
                             <constraint firstItem="nPo-3u-DpN" firstAttribute="leading" secondItem="exy-jP-PgS" secondAttribute="leadingMargin" constant="60" id="x8Z-BD-qbt"/>
                             <constraint firstItem="bbr-JS-peM" firstAttribute="leading" secondItem="exy-jP-PgS" secondAttribute="leadingMargin" constant="-20" id="yaj-kt-yW1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hok-A1-tu5" secondAttribute="trailing" constant="32" id="ye6-eE-ZLA"/>
+                            <constraint firstItem="hCK-5H-Fea" firstAttribute="top" secondItem="nPo-3u-DpN" secondAttribute="bottom" constant="10" id="ylx-H8-CeD"/>
                             <constraint firstItem="bbr-JS-peM" firstAttribute="centerX" secondItem="exy-jP-PgS" secondAttribute="centerX" id="yxJ-wn-4bR"/>
                             <constraint firstItem="nPo-3u-DpN" firstAttribute="top" secondItem="hok-A1-tu5" secondAttribute="bottom" constant="4" id="zsy-tW-eZj"/>
                         </constraints>
@@ -261,7 +235,28 @@
                             </mask>
                         </variation>
                     </view>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem image="comments" id="hDs-PB-GLg">
+                            <color key="tintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="flickComments:" destination="moV-M6-9oY" id="6JI-78-0Ee"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Mgp-pX-6Vh"/>
+                        <barButtonItem systemItem="action" id="sa0-dO-84j">
+                            <color key="tintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="flickShare:" destination="moV-M6-9oY" id="m0R-JB-6JP"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="0Kt-sp-XGn"/>
+                        <barButtonItem image="info" id="gNS-iF-2xr">
+                            <color key="tintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="flickInfo:" destination="moV-M6-9oY" id="Glx-8b-4lH"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="Gpv-rS-jvy"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -270,6 +265,7 @@
                         <outlet property="flickImageVw" destination="bbr-JS-peM" id="9zs-hE-jSd"/>
                         <outlet property="flickLabel" destination="hok-A1-tu5" id="Yrn-Kv-gzc"/>
                         <outlet property="flickOwnerLabel" destination="nPo-3u-DpN" id="YFU-c0-x2F"/>
+                        <outlet property="navBar" destination="Gpv-rS-jvy" id="URm-Dq-pEh"/>
                         <segue destination="WVI-6A-NyD" kind="show" identifier="mapSegue" id="I9S-HB-Fon"/>
                         <segue destination="oFQ-aS-dcF" kind="show" identifier="commentsSegue" id="Zpv-8D-v73"/>
                     </connections>
@@ -282,13 +278,15 @@
         <scene sceneID="O89-Xg-n2y">
             <objects>
                 <tableViewController id="oFQ-aS-dcF" customClass="CommentListController" customModule="TwoFlick" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ylv-4o-8TY">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ylv-4o-8TY">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="commentCell" textLabel="jiU-WI-X1j" detailTextLabel="b3p-Sv-dcH" style="IBUITableViewCellStyleValue2" id="bGz-qI-T75" customClass="CommentCell" customModule="TwoFlick" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="commentCell" textLabel="jiU-WI-X1j" detailTextLabel="b3p-Sv-dcH" style="IBUITableViewCellStyleValue2" id="bGz-qI-T75" customClass="CommentCell" customModule="TwoFlick" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bGz-qI-T75" id="Mm1-9l-jvb">
@@ -300,7 +298,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.99194461109999998" green="0.99615627529999995" blue="0.99600595240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="b3p-Sv-dcH">
@@ -315,6 +313,8 @@
                                     <animations/>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration" identifier="commentCell"/>
                                 <connections>
                                     <outlet property="commentDetail" destination="b3p-Sv-dcH" id="g2X-5q-xZT"/>
@@ -364,7 +364,7 @@
         <!--Navigation Controller-->
         <scene sceneID="hKA-lW-g6E">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BWd-us-H5j" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="BWd-us-H5j" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6a5-xM-QTg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -372,6 +372,11 @@
                         <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="eNl-XN-YwB">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </toolbar>
                     <connections>
                         <segue destination="bSQ-xF-Nz5" kind="relationship" relationship="rootViewController" id="ojG-m6-IfC"/>
                     </connections>

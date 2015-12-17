@@ -26,6 +26,11 @@ class FlickMapViewController: UIViewController {
         flickMapView.setRegion(region, animated: true)
 
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.toolbarHidden = true
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

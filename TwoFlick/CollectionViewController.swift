@@ -13,20 +13,24 @@ class CollectionViewController: UICollectionViewController {
     
     let reuseIdentifier = "Cell"
     let network = Network()
-    var checkOnce = true
+    let apiKey = "018c00fa2d9b15eea951e9a9efa8137d"
+    
+    // segue identifiers
+    let noNetworkSegue = "noNetworkSegue"
+    let flickDetailSegue = "flickDetailSegue"
+    
     var refreshControl : UIRefreshControl!
-    internal var flickList = [FlickItem]()
+    var flickList = [FlickItem]()
     var getFotos : GetPhotos!
     var page = 1
+    
     @IBOutlet weak var lgActivityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if network.isConnected() {
-            
-            print("not here")
-            getFotos = GetPhotos(apiKey: "018c00fa2d9b15eea951e9a9efa8137d")
+            getFotos = GetPhotos(apiKey: apiKey)
             
             refreshControl = UIRefreshControl()
             refreshControl.addTarget(self, action: "refreshFlicks", forControlEvents: .ValueChanged)
@@ -36,10 +40,13 @@ class CollectionViewController: UICollectionViewController {
             //animate the activity indicator
             lgActivityIndicator.startAnimating()
         } else {
-            
-            print("here")
-            performSegueWithIdentifier("noNetwork", sender: self)
+            performSegueWithIdentifier(noNetworkSegue, sender: self)
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.toolbarHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,9 +55,8 @@ class CollectionViewController: UICollectionViewController {
 
     
     // MARK: - Navigation
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "flickDetailSegue" && networkIsUp(){
+        if segue.identifier == flickDetailSegue && networkIsUp(){
             let selection = self.collectionView?.indexPathsForSelectedItems()!
             let item = flickList[selection![0].row]
             let dest = segue.destinationViewController as! FlickDetailViewController
@@ -96,8 +102,10 @@ class CollectionViewController: UICollectionViewController {
         }
     }
     
+    
+    // MARK: Refresh Actions
     // handles the pull-down to refresh action
-    func refreshFlicks() {
+    private func refreshFlicks() {
         if networkIsUp() {
             // the refresh control is spinning
             refreshSelf()
@@ -105,13 +113,15 @@ class CollectionViewController: UICollectionViewController {
             refreshControl.endRefreshing()
         }
     }
-        
     
     private func refreshSelf(){
         flickList.removeAll()               // empty the collection view
         self.collectionView?.reloadData()   // and reset the scroll position
     }
     
+    
+    // MARK: Network Connection
+    // check for network connectivity
     private func networkIsUp() -> Bool{
         if network.isConnected() {
             return true
@@ -132,6 +142,8 @@ class CollectionViewController: UICollectionViewController {
     
 }
 
+
+// handle 
 extension CollectionViewController : UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if !networkIsUp() { return false    }

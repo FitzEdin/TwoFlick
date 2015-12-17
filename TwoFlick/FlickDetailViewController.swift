@@ -12,15 +12,17 @@ class FlickDetailViewController: UIViewController {
     
     let size = "z.jpg"
     let apiKey = "018c00fa2d9b15eea951e9a9efa8137d"
+    
     var noLocation = true
     var noComment = true
     var item : FlickItem!
     var commentList : [Comment]!
     
-    
     @IBOutlet weak var flickImageVw: UIImageView!
     @IBOutlet weak var flickLabel: UILabel!
     @IBOutlet weak var flickOwnerLabel: UILabel!
+    @IBOutlet weak var navBar: UINavigationItem!
+    
     @IBAction func flickShare(sender: AnyObject) {
         let message = item.title
         let image = item.lgImage
@@ -58,6 +60,13 @@ class FlickDetailViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
+        
+        navigationController?.toolbarHidden = false
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         self.flickLabel.text = item.title
         
         // add rounding to the image's corners
@@ -65,19 +74,17 @@ class FlickDetailViewController: UIViewController {
         flickImageVw.alpha = 0.2
         flickImageVw.image = item.smImage
         
-        loadLgImg()
-        getInfo()
-        getLoc()
-        getComments()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
         // Swipe left gesture
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: "loadMap")
         swipeLeft.direction = .Left
         self.view.addGestureRecognizer(swipeLeft)
+        
+        loadLgImg()
+        getInfo()
+        getLoc()
+        getComments()
+        
+        //navigationController?.setToolbarHidden(false, animated: false)
     }
     
     //

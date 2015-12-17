@@ -8,7 +8,7 @@
 
 import UIKit
 
-// the data structure for each item
+// the data structure for each comment
 class Comment {
     var authorName: String
     var content: String
