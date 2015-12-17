@@ -96,10 +96,10 @@
             </objects>
             <point key="canvasLocation" x="508" y="-395"/>
         </scene>
-        <!--View Controller-->
+        <!--No Network View Controller-->
         <scene sceneID="CdL-Gt-KEj">
             <objects>
-                <viewController id="zDq-sk-aiM" sceneMemberID="viewController">
+                <viewController id="zDq-sk-aiM" customClass="NoNetworkViewController" customModule="TwoFlick" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Cut-WF-OgH"/>
                         <viewControllerLayoutGuide type="bottom" id="wr9-Or-7kT"/>
@@ -109,43 +109,66 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No wifi means we can't flick around today. Try again later" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rpn-e4-oRY">
-                                <rect key="frame" x="70" y="476" width="460" height="19.5"/>
+                                <rect key="frame" x="70" y="436" width="460" height="19.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SORRY ! ! !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Fo-ia-C6g">
-                                <rect key="frame" x="177" y="44" width="246" height="83"/>
+                                <rect key="frame" x="177" y="44" width="246" height="123"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="52"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noNetwork" translatesAutoresizingMaskIntoConstraints="NO" id="kNp-XW-tFj">
-                                <rect key="frame" x="50" y="140" width="500" height="320"/>
+                                <rect key="frame" x="200" y="180" width="200" height="240"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="320" id="WqX-VO-A5v"/>
+                                    <constraint firstAttribute="height" constant="240" id="eB9-zW-KAp"/>
+                                    <constraint firstAttribute="width" constant="200" id="y11-RR-zJu"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4b-c7-jN2">
+                                <rect key="frame" x="281" y="520" width="37" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Retry"/>
+                                <connections>
+                                    <action selector="retryButton:" destination="zDq-sk-aiM" eventType="touchUpInside" id="Wh1-aD-5ah"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.99194461109999998" green="0.99615627529999995" blue="0.99600595240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="kNp-XW-tFj" firstAttribute="top" secondItem="4Fo-ia-C6g" secondAttribute="bottom" constant="13" id="AeC-KB-sPE"/>
-                            <constraint firstItem="kNp-XW-tFj" firstAttribute="centerY" secondItem="FZ6-mk-p5R" secondAttribute="centerY" id="BrC-kW-bGe"/>
+                            <constraint firstItem="rpn-e4-oRY" firstAttribute="top" secondItem="kNp-XW-tFj" secondAttribute="bottom" constant="16" id="73i-LU-vbo"/>
+                            <constraint firstItem="kNp-XW-tFj" firstAttribute="leading" secondItem="FZ6-mk-p5R" secondAttribute="leadingMargin" constant="150" id="Ajb-U8-UlU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rpn-e4-oRY" secondAttribute="trailing" constant="50" id="CX0-cH-I3R"/>
-                            <constraint firstItem="kNp-XW-tFj" firstAttribute="leading" secondItem="FZ6-mk-p5R" secondAttribute="leadingMargin" constant="30" id="IV4-YS-i2E"/>
+                            <constraint firstItem="kNp-XW-tFj" firstAttribute="top" secondItem="4Fo-ia-C6g" secondAttribute="bottom" constant="13" id="Kz3-3Q-adn"/>
                             <constraint firstItem="4Fo-ia-C6g" firstAttribute="top" secondItem="Cut-WF-OgH" secondAttribute="bottom" constant="24" id="N96-eu-iTb"/>
-                            <constraint firstItem="kNp-XW-tFj" firstAttribute="centerX" secondItem="rpn-e4-oRY" secondAttribute="centerX" id="QN0-uN-n3C"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="kNp-XW-tFj" secondAttribute="trailing" constant="30" id="cS1-8f-T4g"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kNp-XW-tFj" secondAttribute="trailing" constant="180" id="Nhc-Ry-2ad"/>
+                            <constraint firstItem="kNp-XW-tFj" firstAttribute="centerX" secondItem="FZ6-mk-p5R" secondAttribute="centerX" id="Scv-T1-0nt"/>
+                            <constraint firstItem="kNp-XW-tFj" firstAttribute="centerY" secondItem="FZ6-mk-p5R" secondAttribute="centerY" id="XCj-mw-sLk"/>
+                            <constraint firstItem="g4b-c7-jN2" firstAttribute="centerX" secondItem="FZ6-mk-p5R" secondAttribute="centerX" id="ds1-7A-HjD"/>
                             <constraint firstItem="rpn-e4-oRY" firstAttribute="centerX" secondItem="FZ6-mk-p5R" secondAttribute="centerX" id="e78-ig-Erz"/>
-                            <constraint firstItem="rpn-e4-oRY" firstAttribute="top" secondItem="kNp-XW-tFj" secondAttribute="bottom" constant="16" id="gHB-P9-7BO"/>
+                            <constraint firstItem="wr9-Or-7kT" firstAttribute="top" secondItem="g4b-c7-jN2" secondAttribute="bottom" constant="50" id="f17-Zk-vYS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kNp-XW-tFj" secondAttribute="trailing" constant="180" id="jxI-b4-A8P"/>
                             <constraint firstItem="rpn-e4-oRY" firstAttribute="leading" secondItem="FZ6-mk-p5R" secondAttribute="leadingMargin" constant="50" id="kmZ-VX-egm"/>
                             <constraint firstItem="4Fo-ia-C6g" firstAttribute="centerX" secondItem="FZ6-mk-p5R" secondAttribute="centerX" id="ss8-EL-mef"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Ajb-U8-UlU"/>
+                                <exclude reference="Nhc-Ry-2ad"/>
+                                <exclude reference="jxI-b4-A8P"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="refreshLabel" destination="rpn-e4-oRY" id="V9V-Zo-njG"/>
+                        <segue destination="BWd-us-H5j" kind="show" identifier="refreshSegue" id="7J7-We-ovY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dnL-ui-3jh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
