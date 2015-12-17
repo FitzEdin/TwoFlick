@@ -11,23 +11,35 @@ import UIKit
 // manage the (initial) collection view
 class CollectionViewController: UICollectionViewController {
     
+    let reuseIdentifier = "Cell"
+    let network = Network()
+    var checkOnce = true
     var refreshControl : UIRefreshControl!
-    private let reuseIdentifier = "Cell"
     internal var flickList = [FlickItem]()
-    var getFotos = GetPhotos(apiKey: "018c00fa2d9b15eea951e9a9efa8137d")
-    private var page = 1
+    var getFotos : GetPhotos!
+    var page = 1
     @IBOutlet weak var lgActivityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: "refreshFlicks", forControlEvents: .ValueChanged)
-        self.collectionView?.addSubview(refreshControl)
-        getFotos.collectionViewCtrl = self
-        
-        //animate the activity indicator
-        lgActivityIndicator.startAnimating()
+        if network.isConnected() {
+            
+            print("not here")
+            getFotos = GetPhotos(apiKey: "018c00fa2d9b15eea951e9a9efa8137d")
+            
+            refreshControl = UIRefreshControl()
+            refreshControl.addTarget(self, action: "refreshFlicks", forControlEvents: .ValueChanged)
+            self.collectionView?.addSubview(refreshControl)
+            getFotos.collectionViewCtrl = self
+            
+            //animate the activity indicator
+            lgActivityIndicator.startAnimating()
+        } else {
+            
+            print("here")
+            performSegueWithIdentifier("noNetwork", sender: self)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,11 +49,13 @@ class CollectionViewController: UICollectionViewController {
     
     // MARK: - Navigation
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {        
-        let selection = self.collectionView?.indexPathsForSelectedItems()!
-        let item = flickList[selection![0].row]
-        let dest = segue.destinationViewController as! FlickDetailViewController        
-        dest.item = item
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "flickDetailSegue" && networkIsUp(){
+            let selection = self.collectionView?.indexPathsForSelectedItems()!
+            let item = flickList[selection![0].row]
+            let dest = segue.destinationViewController as! FlickDetailViewController
+            dest.item = item
+        }
     }
     
 
@@ -75,7 +89,7 @@ class CollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         let num = flickList.count - indexPath.item
         
-        if num == 30 {
+        if num == 10 && network.isConnected(){
             //load the next page of images
             getFotos.grabRecentPhotos(page)
             page++
@@ -84,10 +98,12 @@ class CollectionViewController: UICollectionViewController {
     
     // handles the pull-down to refresh action
     func refreshFlicks() {
-        // the refresh control is spinning
-        refreshSelf()
-        getFotos.grabRecentPhotos(1)
-        refreshControl.endRefreshing()
+        if networkIsUp() {
+            // the refresh control is spinning
+            refreshSelf()
+            getFotos.grabRecentPhotos(1)
+            refreshControl.endRefreshing()
+        }
     }
         
     
@@ -96,14 +112,33 @@ class CollectionViewController: UICollectionViewController {
         self.collectionView?.reloadData()   // and reset the scroll position
     }
     
+    private func networkIsUp() -> Bool{
+        if network.isConnected() {
+            return true
+        }else {
+            //pop up an alert
+            let me = UIAlertController(title: "Network Issues", message: "Can't connect to Flickr at the moment", preferredStyle: .Alert)
+            me.addAction(
+                UIAlertAction(
+                    title: "Close",
+                    style: .Default,
+                    handler:nil )
+            )
+            self.presentViewController(me, animated: true, completion: nil)
+            
+            return false
+        }
+    }
+    
 }
 
 extension CollectionViewController : UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if !networkIsUp() { return false    }
         if (textField.text == " ")||(textField.text == ""){
             return true
         }
-        if let tx = textField.text{
+        if let tx = textField.text {
             let newTx = tx.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())
             lgActivityIndicator.startAnimating()// spin the activity indicator
             refreshSelf()

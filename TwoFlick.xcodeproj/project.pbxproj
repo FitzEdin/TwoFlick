@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CF2A56CB1C21974B002BE3E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2CDE7791C03EB4C002E600D /* Assets.xcassets */; };
 		CF33A87A1C20B75700EEACEC /* FlickMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF33A8791C20B75700EEACEC /* FlickMapViewController.swift */; };
+		CF7DEC7A1C2226000061B4BC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7DEC791C2226000061B4BC /* Network.swift */; };
 		F2B312D31C0D363F00ECBB50 /* FlickDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B312D21C0D363F00ECBB50 /* FlickDetailViewController.swift */; };
 		F2C9DBCF1C0B57D200A716B0 /* GetPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C9DBCE1C0B57D200A716B0 /* GetPhotos.swift */; };
 		F2CDE7731C03EB4C002E600D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CDE7721C03EB4C002E600D /* AppDelegate.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		CF33A8791C20B75700EEACEC /* FlickMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickMapViewController.swift; sourceTree = "<group>"; };
+		CF7DEC791C2226000061B4BC /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		F2B312D21C0D363F00ECBB50 /* FlickDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickDetailViewController.swift; sourceTree = "<group>"; };
 		F2C9DBCE1C0B57D200A716B0 /* GetPhotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPhotos.swift; sourceTree = "<group>"; };
 		F2CDE76F1C03EB4C002E600D /* TwoFlick.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwoFlick.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +76,7 @@
 				F2CDE7881C03ED9B002E600D /* FlickItem.swift */,
 				F2CDE7721C03EB4C002E600D /* AppDelegate.swift */,
 				F2CDE77B1C03EB4C002E600D /* LaunchScreen.storyboard */,
+				CF7DEC791C2226000061B4BC /* Network.swift */,
 				F2CDE77E1C03EB4C002E600D /* Info.plist */,
 			);
 			path = TwoFlick;
@@ -153,6 +156,7 @@
 			files = (
 				F2CDE7871C03ECD6002E600D /* CollectionViewController.swift in Sources */,
 				F2B312D31C0D363F00ECBB50 /* FlickDetailViewController.swift in Sources */,
+				CF7DEC7A1C2226000061B4BC /* Network.swift in Sources */,
 				F2CDE7851C03EC84002E600D /* FlickCell.swift in Sources */,
 				CF33A87A1C20B75700EEACEC /* FlickMapViewController.swift in Sources */,
 				F2C9DBCF1C0B57D200A716B0 /* GetPhotos.swift in Sources */,

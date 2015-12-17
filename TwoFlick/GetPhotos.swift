@@ -111,6 +111,8 @@ class GetPhotos{
     // grab the most recent set of pics..
     internal func grabRecentPhotos(page : Int) {
         // generate a url
+        
+        
         (self.page!)++
         let url = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=\(apiKey)&per_page=\(count)&page=\(self.page)&format=json&nojsoncallback=1")!
         

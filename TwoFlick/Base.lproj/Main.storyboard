@@ -8,13 +8,13 @@
         <!--Collection View Controller-->
         <scene sceneID="tnJ-zD-P99">
             <objects>
-                <collectionViewController id="bSQ-xF-Nz5" customClass="CollectionViewController" customModule="TwoFlick" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" id="KVo-Ss-Lg0">
+                <collectionViewController modalTransitionStyle="crossDissolve" id="bSQ-xF-Nz5" customClass="CollectionViewController" customModule="TwoFlick" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="black" keyboardDismissMode="onDrag" dataMode="prototypes" id="KVo-Ss-Lg0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" red="0.041505635280000001" green="0.79789367950000001" blue="0.98244265289999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" red="0.99194461107254028" green="0.99615627527236938" blue="0.99600595235824585" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="WMV-oj-UXo">
                             <size key="itemSize" width="150" height="100"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -25,6 +25,7 @@
                             <rect key="frame" x="0.0" y="-64" width="600" height="600"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
+                            <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </activityIndicatorView>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="Cell" id="nUa-0P-wEI" customClass="FlickCell" customModule="TwoFlick" customModuleProvider="target">
@@ -64,7 +65,7 @@
                                 </variation>
                                 <connections>
                                     <outlet property="flickImage" destination="iay-ZZ-W2Y" id="ih3-ga-7bK"/>
-                                    <segue destination="moV-M6-9oY" kind="show" identifier="flickDetailSegue" animates="NO" id="FOj-7I-1L0"/>
+                                    <segue destination="moV-M6-9oY" kind="show" identifier="flickDetailSegue" id="FOj-7I-1L0"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -75,12 +76,12 @@
                     </collectionView>
                     <navigationItem key="navigationItem" id="wT8-oU-m34">
                         <nil key="title"/>
-                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="center" minimumFontSize="17" id="MN3-YQ-ZJ4">
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="center" minimumFontSize="15" clearButtonMode="always" id="MN3-YQ-ZJ4">
                             <rect key="frame" x="195" y="7" width="210" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <textInputTraits key="textInputTraits" keyboardAppearance="light"/>
                             <connections>
                                 <outlet property="delegate" destination="bSQ-xF-Nz5" id="TSZ-y9-PBQ"/>
                             </connections>
@@ -88,11 +89,67 @@
                     </navigationItem>
                     <connections>
                         <outlet property="lgActivityIndicator" destination="50J-fx-W47" id="fRx-UT-ddI"/>
+                        <segue destination="zDq-sk-aiM" kind="presentation" identifier="noNetwork" id="Qwh-A4-sFR"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="awe-9D-dBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="508" y="-395"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="CdL-Gt-KEj">
+            <objects>
+                <viewController id="zDq-sk-aiM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Cut-WF-OgH"/>
+                        <viewControllerLayoutGuide type="bottom" id="wr9-Or-7kT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FZ6-mk-p5R">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No wifi means we can't flick around today. Try again later" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rpn-e4-oRY">
+                                <rect key="frame" x="70" y="476" width="460" height="19.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SORRY ! ! !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Fo-ia-C6g">
+                                <rect key="frame" x="177" y="44" width="246" height="83"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="52"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noNetwork" translatesAutoresizingMaskIntoConstraints="NO" id="kNp-XW-tFj">
+                                <rect key="frame" x="50" y="140" width="500" height="320"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="320" id="WqX-VO-A5v"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="0.99194461109999998" green="0.99615627529999995" blue="0.99600595240000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="kNp-XW-tFj" firstAttribute="top" secondItem="4Fo-ia-C6g" secondAttribute="bottom" constant="13" id="AeC-KB-sPE"/>
+                            <constraint firstItem="kNp-XW-tFj" firstAttribute="centerY" secondItem="FZ6-mk-p5R" secondAttribute="centerY" id="BrC-kW-bGe"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rpn-e4-oRY" secondAttribute="trailing" constant="50" id="CX0-cH-I3R"/>
+                            <constraint firstItem="kNp-XW-tFj" firstAttribute="leading" secondItem="FZ6-mk-p5R" secondAttribute="leadingMargin" constant="30" id="IV4-YS-i2E"/>
+                            <constraint firstItem="4Fo-ia-C6g" firstAttribute="top" secondItem="Cut-WF-OgH" secondAttribute="bottom" constant="24" id="N96-eu-iTb"/>
+                            <constraint firstItem="kNp-XW-tFj" firstAttribute="centerX" secondItem="rpn-e4-oRY" secondAttribute="centerX" id="QN0-uN-n3C"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kNp-XW-tFj" secondAttribute="trailing" constant="30" id="cS1-8f-T4g"/>
+                            <constraint firstItem="rpn-e4-oRY" firstAttribute="centerX" secondItem="FZ6-mk-p5R" secondAttribute="centerX" id="e78-ig-Erz"/>
+                            <constraint firstItem="rpn-e4-oRY" firstAttribute="top" secondItem="kNp-XW-tFj" secondAttribute="bottom" constant="16" id="gHB-P9-7BO"/>
+                            <constraint firstItem="rpn-e4-oRY" firstAttribute="leading" secondItem="FZ6-mk-p5R" secondAttribute="leadingMargin" constant="50" id="kmZ-VX-egm"/>
+                            <constraint firstItem="4Fo-ia-C6g" firstAttribute="centerX" secondItem="FZ6-mk-p5R" secondAttribute="centerX" id="ss8-EL-mef"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dnL-ui-3jh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="508" y="369"/>
         </scene>
         <!--Flick Detail View Controller-->
         <scene sceneID="MnD-h9-3Ey">
@@ -127,6 +184,7 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k4D-qq-oa2">
                                 <rect key="frame" x="0.0" y="528" width="600" height="44"/>
                                 <animations/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <barButtonItem image="comments" id="hDs-PB-GLg">
                                         <color key="tintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -149,6 +207,7 @@
                                         </connections>
                                     </barButtonItem>
                                 </items>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
                         </subviews>
                         <animations/>
@@ -247,5 +306,6 @@
     <resources>
         <image name="comments" width="25" height="25"/>
         <image name="info" width="25" height="25"/>
+        <image name="noNetwork" width="60" height="60"/>
     </resources>
 </document>

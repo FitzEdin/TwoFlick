@@ -55,7 +55,6 @@ class FlickDetailViewController: UIViewController {
         self.flickLabel.text = item.title
         
         // add rounding to the image's corners
-        flickImageVw.layer.cornerRadius = 3
         flickImageVw.clipsToBounds = true
         flickImageVw.alpha = 0.2
         flickImageVw.image = item.smImage
@@ -165,25 +164,23 @@ class FlickDetailViewController: UIViewController {
         
         do {
             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
+            if let photo = jsonData["photo"] as! NSDictionary! {
+                // get .owner.username
+                let owner = photo["owner"] as! NSDictionary
+                item.ownerName = owner["username"] as! String
             
-            let photo = jsonData["photo"] as! NSDictionary
-            
-            // get .owner.username
-            let owner = photo["owner"] as! NSDictionary
-            item.ownerName = owner["username"] as! String
-            
-            //get .description._content
-            var me = photo["description"] as! NSDictionary
-            item.flkDescription = me["_content"] as! String
-            //get .comments._content
-            me = photo["comments"] as! NSDictionary
-            item.commentCount = me["_content"] as! String
-            //get .dates.taken
-            me = photo["dates"] as! NSDictionary
-            item.dateTaken = me["taken"] as! String
-            //get .views
-            item.views = photo["views"] as! String
-            
+                //get .description._content
+                var me = photo["description"] as! NSDictionary
+                item.flkDescription = me["_content"] as! String
+                //get .comments._content
+                me = photo["comments"] as! NSDictionary
+                item.commentCount = me["_content"] as! String
+                //get .dates.taken
+                me = photo["dates"] as! NSDictionary
+                item.dateTaken = me["taken"] as! String
+                //get .views
+                item.views = photo["views"] as! String
+            }
         } catch let error {
             print("error \(error)")
         }
