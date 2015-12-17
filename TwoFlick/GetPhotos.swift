@@ -114,7 +114,7 @@ class GetPhotos{
         
         
         (self.page!)++
-        let url = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=\(apiKey)&per_page=\(count)&page=\(self.page)&format=json&nojsoncallback=1")!
+        let url = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=\(apiKey)&per_page=\(count)&page=\(self.page)&format=json&nojsoncallback=1")!
         
         // grab the data from url
         let session = NSURLSession.sharedSession()
