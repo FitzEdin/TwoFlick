@@ -13,7 +13,9 @@ class FlickDetailViewController: UIViewController {
     let size = "z.jpg"
     let apiKey = "018c00fa2d9b15eea951e9a9efa8137d"
     var noLocation = true
+    var noComment = true
     var item : FlickItem!
+    var commentList : [Comment]!
     
     
     @IBOutlet weak var flickImageVw: UIImageView!
@@ -39,14 +41,18 @@ class FlickDetailViewController: UIViewController {
     }
     
     @IBAction func flickComments(sender: UIBarButtonItem) {
-        let me = UIAlertController(title: "Tags", message: "Lat: \(item.lat) Lon: \(item.lon)", preferredStyle: .Alert)
-        me.addAction(
-            UIAlertAction(
-                title: "Close",
-                style: .Default,
-                handler:nil )
-        )
-        self.presentViewController(me, animated: true, completion: nil)
+        if noComment {
+            let me = UIAlertController(title: "No Comments", message: "No one has commented on this photo as yet", preferredStyle: .ActionSheet)
+            me.addAction(
+                UIAlertAction(
+                    title: "OK",
+                    style: .Default,
+                    handler: nil )
+            )
+            self.presentViewController(me, animated: true, completion: nil)
+        } else {
+            self.performSegueWithIdentifier("commentsSegue", sender: self)
+        }
     }
     
     
@@ -62,6 +68,7 @@ class FlickDetailViewController: UIViewController {
         loadLgImg()
         getInfo()
         getLoc()
+        getComments()
     }
     
     override func viewDidLoad() {
@@ -249,11 +256,70 @@ class FlickDetailViewController: UIViewController {
     }
     
     
+    // get the comments
+    private func gotComments(data : NSData?){
+        guard data != nil else {
+            print("no data")
+            return
+        }
+        
+        do {
+            let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
+            
+            let comments = jsonData["comments"]! as! NSDictionary
+            if comments.count > 1 {
+                noComment = false
+
+                let comment = comments["comment"]! as! NSArray
+                
+                for var first in comment {
+                    // grab parameters for URL
+                    let authorName = first["authorname"]! as! String
+                    let content = first["_content"]! as! String
+                    
+                    self.commentList.append(Comment(authorName: authorName, content: content))
+                }
+            } else {
+                noComment = true
+            }
+        } catch let error {
+            print("error \(error)")
+        }
+    }
+    
+    // perform a search with a particular term
+    internal func getComments(){
+        commentList = [Comment]()
+        // generate a url using the search term
+        let str = "https://api.flickr.com/services/rest/?method=flickr.photos.comments.getList&api_key=\(apiKey)&photo_id=\(item.id)&format=json&nojsoncallback=1"
+        let url = NSURL(string: str)!
+        
+        // perform the search
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithURL(
+            url,
+            completionHandler: {
+                data,
+                response,
+                error in self.gotComments(data!)
+            }
+        )
+        
+        task.resume()
+    }
+    
+    
     // MARK: Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let dest = segue.destinationViewController as! FlickMapViewController
-        dest.lat = Double(item.lat)!
-        dest.lon = Double(item.lon)!
+        if segue.identifier == "mapSegue" {
+            let dest = segue.destinationViewController as! FlickMapViewController
+            dest.lat = Double(item.lat)!
+            dest.lon = Double(item.lon)!
+            
+        } else { //segue to list of comments
+            let dest = segue.destinationViewController as! CommentListController
+            dest.list = commentList
+        }
     }
 }

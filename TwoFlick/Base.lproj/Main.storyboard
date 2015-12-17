@@ -248,11 +248,66 @@
                         <outlet property="flickLabel" destination="hok-A1-tu5" id="Yrn-Kv-gzc"/>
                         <outlet property="flickOwnerLabel" destination="nPo-3u-DpN" id="YFU-c0-x2F"/>
                         <segue destination="WVI-6A-NyD" kind="show" identifier="mapSegue" id="I9S-HB-Fon"/>
+                        <segue destination="oFQ-aS-dcF" kind="show" identifier="commentsSegue" id="Zpv-8D-v73"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E91-om-aP4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1238" y="-395"/>
+        </scene>
+        <!--Comment List Controller-->
+        <scene sceneID="O89-Xg-n2y">
+            <objects>
+                <tableViewController id="oFQ-aS-dcF" customClass="CommentListController" customModule="TwoFlick" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ylv-4o-8TY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="commentCell" textLabel="jiU-WI-X1j" detailTextLabel="b3p-Sv-dcH" style="IBUITableViewCellStyleValue2" id="bGz-qI-T75" customClass="CommentCell" customModule="TwoFlick" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bGz-qI-T75" id="Mm1-9l-jvb">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jiU-WI-X1j">
+                                            <rect key="frame" x="15" y="15" width="91" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="b3p-Sv-dcH">
+                                            <rect key="frame" x="112" y="15" width="33" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <accessibility key="accessibilityConfiguration" identifier="commentCell"/>
+                                <connections>
+                                    <outlet property="commentDetail" destination="b3p-Sv-dcH" id="g2X-5q-xZT"/>
+                                    <outlet property="commentTitle" destination="jiU-WI-X1j" id="9Wv-7S-pnJ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="oFQ-aS-dcF" id="crM-94-BB5"/>
+                            <outlet property="delegate" destination="oFQ-aS-dcF" id="NpU-Eb-w54"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Slu-vO-IZh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1238" y="369"/>
         </scene>
         <!--Flick Map View Controller-->
         <scene sceneID="Wiq-Xy-Tz4">
