@@ -89,7 +89,7 @@ class GetPhotos{
     }
     
     // perform a search with a particular term
-    internal func searchFor(searchTerm: String){
+    internal func searchFor(var searchTerm: String){
         // generate a url using the search term
         let str = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&text=\(searchTerm)&format=json&nojsoncallback=1"
         let url = NSURL(string: str)!
@@ -104,16 +104,15 @@ class GetPhotos{
                 error in self.handleData(data!)
             }
         )
-        
         task.resume()
+        
+        searchTerm = ""
     }
     
     // grab the most recent set of pics..
-    internal func grabRecentPhotos(page : Int) {
+    internal func grabRecentPhotos(var page : Int) {
         // generate a url
-        
-        
-        (self.page!)++
+        self.page = page
         let url = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=\(apiKey)&per_page=\(count)&page=\(self.page)&format=json&nojsoncallback=1")!
         
         // grab the data from url
@@ -131,7 +130,7 @@ class GetPhotos{
     }
     
     // set initial values and get the first set of photos
-    init(apiKey: String){
+    init(let apiKey: String){
         self.apiKey = apiKey
         self.page = 0
         self.count = 50

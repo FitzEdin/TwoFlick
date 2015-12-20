@@ -24,6 +24,10 @@ class CollectionViewController: UICollectionViewController {
     var getFotos : GetPhotos!
     var page = 1
     
+    @IBAction func refresh(sender: UIBarButtonItem) {
+        refreshFlicks()
+    }
+    
     @IBOutlet weak var lgActivityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
@@ -31,10 +35,6 @@ class CollectionViewController: UICollectionViewController {
         
         if network.isConnected() {
             getFotos = GetPhotos(apiKey: apiKey)
-            
-            refreshControl = UIRefreshControl()
-            refreshControl.addTarget(self, action: "refreshFlicks", forControlEvents: .ValueChanged)
-            self.collectionView?.addSubview(refreshControl)
             getFotos.collectionViewCtrl = self
             
             //animate the activity indicator
@@ -104,16 +104,16 @@ class CollectionViewController: UICollectionViewController {
     
     
     // MARK: Refresh Actions
-    // handles the pull-down to refresh action
+    // handles the refresh button click
     private func refreshFlicks() {
         if networkIsUp() {
-            // the refresh control is spinning
+            lgActivityIndicator.startAnimating()// spin the activity indicator
             refreshSelf()
             getFotos.grabRecentPhotos(1)
-            refreshControl.endRefreshing()
         }
     }
     
+    //also used when searching
     private func refreshSelf(){
         flickList.removeAll()               // empty the collection view
         self.collectionView?.reloadData()   // and reset the scroll position

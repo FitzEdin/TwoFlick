@@ -86,6 +86,11 @@
                                 <outlet property="delegate" destination="bSQ-xF-Nz5" id="TSZ-y9-PBQ"/>
                             </connections>
                         </textField>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="kkL-B6-4pT">
+                            <connections>
+                                <action selector="refresh:" destination="bSQ-xF-Nz5" id="Rcy-aT-DWZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
