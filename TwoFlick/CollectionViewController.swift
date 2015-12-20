@@ -26,6 +26,7 @@ class CollectionViewController: UICollectionViewController {
     
     @IBAction func refresh(sender: UIBarButtonItem) {
         refreshFlicks()
+        getFotos.grabRecentPhotos(1)
     }
     
     @IBOutlet weak var lgActivityIndicator: UIActivityIndicatorView!
@@ -95,7 +96,7 @@ class CollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         let num = flickList.count - indexPath.item
         
-        if num == 10 && network.isConnected(){
+        if num == 15 && network.isConnected(){
             //load the next page of images
             getFotos.grabRecentPhotos(page)
             page++
@@ -109,7 +110,6 @@ class CollectionViewController: UICollectionViewController {
         if networkIsUp() {
             lgActivityIndicator.startAnimating()// spin the activity indicator
             refreshSelf()
-            getFotos.grabRecentPhotos(1)
         }
     }
     
@@ -151,8 +151,7 @@ extension CollectionViewController : UITextFieldDelegate {
         }
         if let tx = textField.text {
             let newTx = tx.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())
-            lgActivityIndicator.startAnimating()// spin the activity indicator
-            refreshSelf()
+            refreshFlicks()
             getFotos.searchFor(newTx!)
         }
         

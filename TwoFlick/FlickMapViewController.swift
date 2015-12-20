@@ -19,7 +19,7 @@ class FlickMapViewController: UIViewController {
         super.viewDidLoad()
         
         let location = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let span = MKCoordinateSpanMake(0.01, 0.01)
         let region = MKCoordinateRegionMake(location, span)
         
         flickMapView.setRegion(region, animated: true)
